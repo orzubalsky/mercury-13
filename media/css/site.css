@@ -1,0 +1,71 @@
+/*------------POSITIONING------------*/
+html {
+	overflow: -moz-scrollbars-vertical;
+	overflow: scroll;
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	color: #331970;
+	background-color: #F4F6F7;
+}
+
+* html #container {
+	height: 100%;
+}
+
+#container {
+	padding: 18px;
+	margin: 0 auto 200px;
+	height: 100%;
+}
+/*------------END POSITIONING------------*/
+
+
+
+/* This space left intentionally blank. */
+
+
+
+/*------------COLORS AND BACKGROUND------------*/
+
+/*------------END COLORS------------*/
+
+
+
+/* This space left intentionally blank. */
+
+
+
+/*------------TYPE------------*/
+html,body,textarea,input {
+	font-family: "Droid Sans", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	line-height: 1.7em;
+	letter-spacing: .02em;
+}
+/*------------END TYPE------------*/
+
+
+
+/* This space left intentionally blank. */
+
+
+
+/*------------LINK STATES------------*/
+a {
+
+}
+
+a:hover {
+
+}
+/*------------END LINK STATES------------*/
+
+
+/* This space left intentionally blank. */
+
+
+/*------------OVERRIDE------------*/ 
+/*------------END OVERRIDE------------*/ 

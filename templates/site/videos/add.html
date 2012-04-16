@@ -1,0 +1,12 @@
+<h1>ADD VIDEO TO PAGE {{ page.number }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="/videos/add/" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<input type="hidden" class="hidden" name="page_id" value="{{ page.id }}">
+	<ul>
+		{{ form.as_ul }}
+	</ul>
+	<p><input type="submit" value="Submit"></p>
+</form>
