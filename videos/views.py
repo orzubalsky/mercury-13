@@ -17,15 +17,20 @@ def index(request):
     
     for video in video_list:
 
+        url = "http://vimeo.com/api/v2/video/40461403.json"
+
         #response = urllib.urlopen('http://vimeo.com/api/v2/video/40461403.json')        
         #content = response.read()        
         #data = simplejson.loads(content)
         
-        req = urllib2.Request("http://vimeo.com/api/v2/video/40461403.json", None, {'user-agent':'syncstream/vimeo'})        
-        opener = urllib2.build_opener()        
-        content = opener.open(req)
-        data = simplejson.load(content)
-        print(data)
+        #req = urllib2.Request("http://vimeo.com/api/v2/video/40461403.json", None, {'user-agent':'syncstream/vimeo'})        
+        #opener = urllib2.build_opener()        
+        #content = opener.open(req)
+        #data = simplejson.load(content)
+   
+        result = simplejson.loads(urllib2.urlopen(url))   
+        outputDump = simplejson.dumps(result)
+        print '\n'.join([l.rstrip() for l in  outputDump.splitlines()])        
         
         video.thumbnail_url = 'test'
     

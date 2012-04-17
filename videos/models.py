@@ -26,7 +26,7 @@ class Base(Model):
 
 
 """
-    The page class     
+    The Page class     
 """
 class Page(Base):
 
@@ -44,7 +44,7 @@ class Page(Base):
 
 
 """
-    The Venue class     
+    The Video class     
 """
 class Video(Base):
 
@@ -52,7 +52,7 @@ class Video(Base):
         (0, 'None'),
         (1, 'In Queue'),
         (2, 'Uploaded'),
-        (3, 'Processed')
+        (3, 'Ready')
     )
 
     def video_filename (self, filename):
