@@ -1,10 +1,12 @@
 from django.db.models import *
 import os,sys
 
-"""
-   Base model     
-"""
+
 class Base(Model):
+    """
+    Abstract base model class which other models are based on.
+    Includes crud date meta data and active/inactive status
+    """
 
     STATUS_CHOICES = (
         (0, 'Inactive'),
@@ -25,10 +27,12 @@ class Base(Model):
             return "%s" % (type(self))
 
 
-"""
-    The Page class     
-"""
+
 class Page(Base):
+    """
+        One page of the transcript.
+        Represented by page number and a JPEG image of the page.    
+    """    
 
     PAGE_CHOICES = [(i+1, str(i+1)) for i in range(86)]
 
@@ -43,10 +47,14 @@ class Page(Base):
 
 
 
-"""
-    The Video class     
-"""
+
 class Video(Base):
+    """
+        A video for a single page in the transcript.
+        Videos are displayed via vimeo on the site:
+        When an admin adds a video, it's already on vimeo.
+        When a user adds a video, it enters the vimeo upload queue via their API
+    """
 
     VIMEO_STATUS_CHOICES = (
         (0, 'None'),
