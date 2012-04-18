@@ -13,8 +13,8 @@
 {% if video_list %}
     <div id="allVideos">
     {% for video in video_list %}
-        <a class="video" href="/videos/{{ video.id }}/">
-        	<img src="{{ video.thumbnail_url }}" title="" />
+        <a class="video" href="/videos/{{ video.id }}/" id="video_{{ video.id }}">
+        	<img src="" title="" />
         </a>
     {% endfor %}
 	</div>

@@ -1,8 +1,6 @@
 ;(function($){
-	var lib = window.lib = new function() {
-		this.init = function() {
-			this.customScrollbars();
-		},
+	var lib = window.lib = new function() 
+	{
 		this.center = function(element, container) 
 		{
 			var containerWidth = $(container).outerWidth();
@@ -71,15 +69,16 @@
 		{
 			var self = this;
 			
-			$('#slothLoader').appendTo(container).show();
+			// $('#slothLoader').appendTo(container).show();
 			
 			$.ajax({
 				type: 'post',
-				dataType: 'json',
+				dataType: 'POST',
 				url: url,
 				data: data,
-				success: function(data){
-					$('#slothLoader').hide().appendTo('body');
+				success: function(data)
+				{
+					// $('#slothLoader').hide().appendTo('body');
 					successCallback(data);
 					self.postAjaxCalls();
 				}
@@ -158,114 +157,27 @@
 	};
 })(jQuery);
 
-(function ($) {
-	   jQuery.fn.liveDraggable = function (opts) {
-	      this.live("mouseover", function() {
-	         if (!$(this).data("init")) {
-	            $(this).data("init", true).draggable(opts);
-	         }
-	      });
-	   };
-})(jQuery);
 
-
-$.widget( "custom.catcomplete", $.ui.autocomplete, {
-	_renderMenu: function( ul, items ) {
-		var self = this,
-			currentCategory = "";
-		$.each( items, function( index, item ) {
-			if ( item.category != currentCategory ) {
-				ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
-				currentCategory = item.category;
-			}
-			self._renderItem( ul, item );
-		});
-	}
-});	
-
-
-(function($){
-
-    var special = jQuery.event.special,
-        uid1 = 'D' + (+new Date()),
-        uid2 = 'D' + (+new Date() + 1);
-
-    jQuery.event.special.focus = {
-        setup: function() {
-            var _self = this,
-                handler = function(e) {
-                    e = jQuery.event.fix(e);
-                    e.type = 'focus';
-                    if (_self === document) {
-                        jQuery.event.handle.call(_self, e);
-                    }
-                };
-
-            jQuery(this).data(uid1, handler);
-
-            if (_self === document) {
-                /* Must be live() */
-                if (_self.addEventListener) {
-                    _self.addEventListener('focus', handler, true);
-                } else {
-                    _self.attachEvent('onfocusin', handler);
-                }
-            } else {
-                return false;
-            }
-
-        },
-        teardown: function() {
-            var handler = jQuery(this).data(uid1);
-            if (this === document) {
-                if (this.removeEventListener) {
-                    this.removeEventListener('focus', handler, true);
-                } else {
-                    this.detachEvent('onfocusin', handler);
-                }
-            }
-        }
-    };
-
-    jQuery.event.special.blur = {
-        setup: function() {
-            var _self = this,
-                handler = function(e) {
-                    e = jQuery.event.fix(e);
-                    e.type = 'blur';
-                    if (_self === document) {
-                        jQuery.event.handle.call(_self, e);
-                    }
-                };
-
-            jQuery(this).data(uid2, handler);
-
-            if (_self === document) {
-                /* Must be live() */
-                if (_self.addEventListener) {
-                    _self.addEventListener('blur', handler, true);
-                } else {
-                    _self.attachEvent('onfocusout', handler);
-                }
-            } else {
-                return false;
-            }
-
-        },
-        teardown: function() {
-            var handler = jQuery(this).data(uid2);
-            if (this === document) {
-                if (this.removeEventListener) {
-                    this.removeEventListener('blur', handler, true);
-                } else {
-                    this.detachEvent('onfocusout', handler);
-                }
-            }
-        }
-    };
-})(jQuery);
-
-
-$(document).ready(function(){
-	lib.init();
-});		
+$.ajaxSetup({ 
+     beforeSend: function(xhr, settings) {
+         function getCookie(name) {
+             var cookieValue = null;
+             if (document.cookie && document.cookie != '') {
+                 var cookies = document.cookie.split(';');
+                 for (var i = 0; i < cookies.length; i++) {
+                     var cookie = jQuery.trim(cookies[i]);
+                     // Does this cookie string begin with the name we want?
+                 if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                     break;
+                 }
+             }
+         }
+         return cookieValue;
+         }
+         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+             // Only send the token to relative URLs i.e. locally.
+             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+         }
+     } 
+});

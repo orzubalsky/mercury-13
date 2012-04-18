@@ -16,9 +16,28 @@ body {
 }
 
 #container {
-	padding: 18px;
-	margin: 0 auto 200px;
-	height: 100%;
+
+}
+
+#mainVideo {
+    
+}
+
+#allVideos {
+   
+}
+
+#allVideos a {
+    background-color: blue;
+    display: block;
+    float: left;
+    height: 30px;
+    margin: 6px;
+    width: 30px;    
+}
+
+#allVideos a:hover {
+   background-color: red; 
 }
 /*------------END POSITIONING------------*/
 

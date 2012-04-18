@@ -17,10 +17,19 @@
 			
 			
 		/*
-		 *  Request a video when a thumnail is clicked
+		 *  Clicking on a thumbnail extracts the video's id 
+		 *  and displays the target video
 		 */	
 		this.videoSelection = function() 
-		{
+		{		    
+		    var self = this;
+		    
+		    $('#allVideos > a').live('click', function(e) 
+		    {
+		        e.preventDefault();
+		        var id = lib.getId($(this).attr('id'));
+		        self.displayVideo(id);
+		    });
 		};
 		
 
@@ -28,9 +37,9 @@
 		 *  Display selected video
 		 *  @param data received from ajax call
 		 */
-		 this.displayVideo = function()
+		 this.displayVideo = function(id)
 		 {
- 			lib.ajax('/videos', 2, function(data) 
+ 			lib.ajax('/videos/', 'pk='+id, function(data) 
  			{
     			lib.log(data);		      			    
  			});
@@ -42,6 +51,7 @@
 /*
  *  Good old fashioned document-ready function call. Starting js action.
  */
-$(document).ready(function(){
+$(document).ready(function()
+{    
 	site.init();
 });

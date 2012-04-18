@@ -13,7 +13,7 @@ def index(request):
     
     # if there is no ajax call, return 
     if request.method == "POST":
-        return JSONResponse(Video.objects.get(pk=request.POST['id']))
+        return JSONResponse(Video.objects.get(pk=request.POST['pk']))
     
     main_video = Video.objects.order_by('?')[0] 
     
