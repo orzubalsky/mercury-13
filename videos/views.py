@@ -6,14 +6,17 @@ from videos.forms import *
 from django.forms.formsets import formset_factory
 from videos.models import *
 import urllib2, json
-from jsonEncoder import qdct_as_kwargs
-from response import JSONResponse
+from django.core import serializers
+
+
 
 def index(request):
     
     # if there is no ajax call, return 
     if request.method == "POST":
-        return JSONResponse(Video.objects.get(pk=request.POST['pk']))
+        main_video = Video.objects.filter(pk=request.POST.get('pk'))
+        data = serializers.serialize('json', main_video)
+        return HttpResponse(data, mimetype='application/json')        
     
     main_video = Video.objects.order_by('?')[0] 
     

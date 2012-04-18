@@ -36,8 +36,7 @@
 		},		
 		this.postAjaxCalls = function() 
 		{
-			$('label').inFieldLabels();
-			this.customScrollbars();
+            //
 		},
 		this.customScrollbars = function() 
 		{
@@ -73,7 +72,7 @@
 			
 			$.ajax({
 				type: 'post',
-				dataType: 'POST',
+				dataType: 'json',
 				url: url,
 				data: data,
 				success: function(data)

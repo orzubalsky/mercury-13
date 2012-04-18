@@ -39,9 +39,16 @@
 		 */
 		 this.displayVideo = function(id)
 		 {
+		    var container = $('#mainVideo');
+		    
  			lib.ajax('/videos/', 'pk='+id, function(data) 
  			{
-    			lib.log(data);		      			    
+ 			    var code    = data[0].fields.code;
+    			var author  = data[0].fields.author;
+    			var page    = data[0].fields.page;
+    			var html = '<iframe width="400" height="300" frameborder="0" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" src="http://player.vimeo.com/video/' + code + '?title=0&amp;byline=0&amp;portrait=0"></iframe>';
+    			
+    			$(container).empty().html(html);
  			});
 		 };
 	};
