@@ -1,0 +1,7 @@
+*.pyc
+*~
+local_settings.py
+.DS_Store
+
+# ignore all user-uploaded files (but not the README placeholder files)
+datamining/media/uploads/
