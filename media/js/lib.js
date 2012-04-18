@@ -64,7 +64,7 @@
 				i = (i < count-1) ? i+1 : 0;
 			}, intervalMs);
 		},				
-		this.ajax = function(url, data, successCallback, container) 
+		this.ajax = function(url, data, dataType, container, successCallback) 
 		{
 			var self = this;
 			
@@ -72,7 +72,7 @@
 			
 			$.ajax({
 				type: 'post',
-				dataType: 'json',
+				dataType: dataType,
 				url: url,
 				data: data,
 				success: function(data)

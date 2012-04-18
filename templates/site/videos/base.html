@@ -12,7 +12,11 @@
 
 <body>
 	<div id="container">
-        {% block content %}{% endblock %}
+		<a id="viewVideos" href="/videos/">view videos</a>		
+		<a id="addVideo" href="/videos/add/">add video</a>
+		<div id="main">
+        	{% block content %}{% endblock %}
+		</div>
     </div>
 </body>
 

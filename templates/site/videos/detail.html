@@ -1,1 +1,21 @@
-{{ video }}
+{% block detail %}
+
+{% if main_video %}
+	<div id="mainVideo">
+		<iframe src="http://player.vimeo.com/video/{{ main_video.code }}?title=0&amp;byline=0&amp;portrait=0" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>		
+	</div>
+{% endif %}
+
+
+{% if video_list %}
+    <div id="allVideos">
+    {% for video in video_list %}
+        <a class="video" href="/videos/{{ video.id }}/" id="video_{{ video.id }}">
+        	<img src="{{ video.thumbnail_url }}" title="" />
+        </a>
+    {% endfor %}
+	</div>
+{% endif %}
+	
+{% endblock %}
+	

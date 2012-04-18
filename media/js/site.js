@@ -13,12 +13,12 @@
 		this.init = function() 
 		{
             this.videoSelection();
+            this.pageSelection();
 		};
 			
 			
 		/*
-		 *  Clicking on a thumbnail extracts the video's id 
-		 *  and displays the target video
+		 *  Clicking on a thumbnail displays the target video
 		 */	
 		this.videoSelection = function() 
 		{		    
@@ -27,8 +27,7 @@
 		    $('#allVideos > a').live('click', function(e) 
 		    {
 		        e.preventDefault();
-		        var id = lib.getId($(this).attr('id'));
-		        self.displayVideo(id);
+		        self.displayVideo(this);
 		    });
 		};
 		
@@ -37,11 +36,11 @@
 		 *  Display selected video
 		 *  @param data received from ajax call
 		 */
-		 this.displayVideo = function(id)
+		 this.displayVideo = function(anchor)
 		 {
 		    var container = $('#mainVideo');
 		    
- 			lib.ajax('/videos/', 'pk='+id, function(data) 
+ 			lib.ajax($(anchor).attr('href'), '', 'json', container, function(data) 
  			{
  			    var code    = data[0].fields.code;
     			var author  = data[0].fields.author;
@@ -51,6 +50,36 @@
     			$(container).empty().html(html);
  			});
 		 };
+		 
+		 
+		 
+ 		/*
+ 		 *  Clicking on a nav anchor displays the page
+ 		 */	
+ 		this.pageSelection = function() 
+ 		{		    
+ 		    var self = this;
+
+ 		    $('#container > a').live('click', function(e) 
+ 		    {
+ 		        e.preventDefault();
+ 		        self.loadView(this);
+ 		    });
+ 		};
+ 		
+ 				 
+ 		/*
+ 		 *  Populate main content via ajax according to page requested  
+ 		 */
+ 		 this.loadView = function(anchor)
+ 		 {
+ 		    var container = $('#main');
+
+  			lib.ajax($(anchor).attr('href'), '', 'html', container, function(data) 
+  			{
+     			$(container).empty().html(data);
+  			});
+ 		 };		 
 	};
 })(jQuery);
 
