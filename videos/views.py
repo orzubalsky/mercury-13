@@ -6,11 +6,15 @@ from videos.forms import *
 from django.forms.formsets import formset_factory
 from videos.models import *
 import urllib2, json
-from django.utils import simplejson
-
-
+from jsonEncoder import qdct_as_kwargs
+from response import JSONResponse
 
 def index(request):
+    
+    # if there is no ajax call, return 
+    if request.method == "POST":
+        return JSONResponse(Video.objects.get(pk=request.POST['id']))
+    
     main_video = Video.objects.order_by('?')[0] 
     
     video_list = Video.objects.all().order_by('-created')
@@ -28,17 +32,18 @@ def index(request):
         #content = opener.open(req)
         #data = simplejson.load(content)
    
-        result = simplejson.loads(urllib2.urlopen(url))   
-        outputDump = simplejson.dumps(result)
-        print '\n'.join([l.rstrip() for l in  outputDump.splitlines()])        
+        #result = simplejson.loads(urllib2.urlopen(url))   
+        #outputDump = simplejson.dumps(result)
         
         video.thumbnail_url = 'test'
     
     return render_to_response('videos/index.html', {'video_list': video_list, 'main_video': main_video}, context_instance=RequestContext(request))
         
+        
 def detail(request, video_id):
     video = get_object_or_404(Video, pk=video_id)
     return render_to_response('videos/detail.html', {'video': video})
+    
     
 def add(request):
     page = Page.objects.order_by('?')[0]    

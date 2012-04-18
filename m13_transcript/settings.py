@@ -52,6 +52,12 @@ import os,sys
 PROJECT_DIR = '/Applications/MAMP/htdocs/m13_transcript/'
 MEDIA_ROOT = PROJECT_DIR + 'media/'
 
+sys.path.append(os.path.dirname(PROJECT_DIR))    
+sys.path.append(PROJECT_DIR)
+sys.path.append(os.path.join(PROJECT_DIR, 'apps'))                      
+sys.path.append(os.path.join(PROJECT_DIR, 'libs'))
+
+
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
