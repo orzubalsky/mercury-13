@@ -11,7 +11,6 @@ from django.utils import simplejson as json
 
 
 def index(request):
-    main_video = Video.objects.order_by('?')[0] 
     video_list = Video.objects.all().order_by('-created')
     
     # fetch thumbnails -- TODO: this should happen when the video is uploaded
@@ -20,11 +19,10 @@ def index(request):
         data = json.loads(response.read(), encoding='utf-8')
         video.thumbnail_url = data[0][u'thumbnail_small']
     
-    return render_to_response('videos/index.html', {'video_list': video_list, 'main_video': main_video}, context_instance=RequestContext(request))
+    return render_to_response('videos/index.html', {'video_list': video_list}, context_instance=RequestContext(request))
         
         
 def detail(request, video_id):
-    # if there this url was called via ajax, return the video in json
     if request.method == "POST":
         data = serializers.serialize('json', Video.objects.filter(pk=video_id))
         return HttpResponse(data, mimetype='application/json')

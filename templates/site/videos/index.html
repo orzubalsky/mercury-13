@@ -1,22 +1,23 @@
-{% extends "base.html" %}
+{% extends request.is_ajax|yesno:"base_ajax.html,base.html" %}
 
 {% block content %}
 
-{% if main_video %}
-	<div id="mainVideo">
-		<iframe src="http://player.vimeo.com/video/{{ main_video.code }}?title=0&amp;byline=0&amp;portrait=0" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>		
-	</div>
-{% endif %}
-
+<div id="mainVideo">
+	{% block detail %}
+	<iframe id="vimeoFrame" src="http://player.vimeo.com/video/40455594?title=0&amp;byline=0&amp;portrait=0" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>		
+	{% endblock %}	
+</div>
 
 {% if video_list %}
-    <div id="allVideos">
-    {% for video in video_list %}
-        <a class="video" href="/videos/{{ video.id }}/" id="video_{{ video.id }}">
-        	<img src="{{ video.thumbnail_url }}" title="" />
-        </a>
-    {% endfor %}
-	</div>
+<div id="allVideos">
+{% for video in video_list %}
+	<a class="video" href="/videos/{{ video.id }}/" id="video_{{ video.id }}">
+		<img src="{{ video.thumbnail_url }}" title="" />
+	</a>
+{% endfor %}
+</div>
+<div class="clear">&nbsp;</div>
 {% endif %}
 
 {% endblock %}
+

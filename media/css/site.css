@@ -20,7 +20,10 @@ body {
 }
 
 #mainVideo {
-    
+    height: 300px;
+    width: 400px;
+    background-color: #000;
+    margin: 6px;
 }
 
 #allVideos {
@@ -31,9 +34,7 @@ body {
     background-color: blue;
     display: block;
     float: left;
-    height: 30px;
     margin: 6px;
-    width: 30px;    
 }
 
 #allVideos a:hover {

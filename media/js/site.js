@@ -45,9 +45,11 @@
  			    var code    = data[0].fields.code;
     			var author  = data[0].fields.author;
     			var page    = data[0].fields.page;
+    			var src     = 'http://player.vimeo.com/video/' + code + '?title=0&amp;byline=0&amp;portrait=0';
     			var html = '<iframe width="400" height="300" frameborder="0" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" src="http://player.vimeo.com/video/' + code + '?title=0&amp;byline=0&amp;portrait=0"></iframe>';
     			
-    			$(container).empty().html(html);
+                $('#vimeoFrame').attr('src', src);
+    			
  			});
 		 };
 		 
@@ -88,6 +90,6 @@
  *  Good old fashioned document-ready function call. Starting js action.
  */
 $(document).ready(function()
-{    
+{   
 	site.init();
 });
