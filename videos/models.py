@@ -1,5 +1,6 @@
 from django.db.models import *
 import os,sys
+import urllib, urllib2, json
 
 
 class Base(Model):
@@ -38,9 +39,11 @@ class Page(Base):
 
     def image_filename (self, filename):
         return 'uploads/pages/%s' % (filename)
+    def videos(self):
+        return Video.objects.filter(page_id = self.id).count()
 
-    number      = IntegerField(max_length=3, choices=PAGE_CHOICES, default=1)
-    filename    = ImageField("Page",upload_to=image_filename)    
+    number      = IntegerField(max_length=3, choices=PAGE_CHOICES, default=1, verbose_name="page number")
+    filename    = ImageField("Image",upload_to=image_filename)    
 
     def __unicode__ (self):
         return "page %i" % (self.number)
@@ -62,15 +65,35 @@ class Video(Base):
         (2, 'Uploaded'),
         (3, 'Ready')
     )
-
-    def video_filename (self, filename):
-        return 'uploads/page_%i/%s' % (self.page.id, filename)    
-
+  
+    def image_filename (self, filename):
+        return 'uploads/page_%i/%s' % (page.number, filename)
+          
     page            = ForeignKey(Page)
-    vimeo_status    = SmallIntegerField(max_length=1, choices=VIMEO_STATUS_CHOICES, default=0) 
-    filename        = FileField(upload_to=video_filename, blank=True, null=True)    
-    code            = CharField(max_length=255)    
+    vimeo_status    = SmallIntegerField(max_length=1, choices=VIMEO_STATUS_CHOICES, default=3) 
+    thumbnail_url   = CharField(max_length=255, blank=True, null=True)
+    thumbnail       = ImageField("Thumbnail",upload_to=image_filename, blank=True, null=True)    
+    code            = CharField(max_length=255, verbose_name="Vimeo ID")    
     author          = CharField(max_length=255)
+    
+    def save(self, *args, **kwargs):
+        response = urllib2.urlopen('http://vimeo.com/api/v2/video/%s.json' % (self.code))        
+        data = json.loads(response.read(), encoding='utf-8')
+        self.thumbnail_url =  data[0][u'thumbnail_small']
+
+        filePath = 'uploads/page_%i/thumbnail_%i.jpg' % (self.page.number, self.id)
+        downloaded_image = file(settings.MEDIA_ROOT + filePath, "wb")
+        image_on_web = urllib.urlopen(self.thumbnail_url)
+        while True:
+            buf = image_on_web.read(65536)
+            if len(buf) == 0:
+                break
+            downloaded_image.write(buf)
+        downloaded_image.close()
+        image_on_web.close()
+        
+        self.thumbnail = filePath
+        super(Video, self).save(*args, **kwargs)    
     
     def __unicode__ (self):
         return "page %i by %s" % (self.page.number, self.author)    

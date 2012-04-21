@@ -12,8 +12,46 @@
 	     */
 		this.init = function() 
 		{
+		    this.vimeoControls();
             this.videoSelection();
             this.pageSelection();
+		};
+			
+			
+		/*
+		 * 
+		 */	
+		this.vimeoControls = function() 
+		{		    
+		    var self = this;
+            lib.log('a');
+
+            //$f('iframe#vimeoFrame').addEvent('ready', ready);
+            
+            // Enable the API on each Vimeo video
+            $('iframe').each(function(){
+                
+                Froogaloop(this).addEvent('ready', ready);
+            });            
+
+            
+            function ready(playerID){
+                // Add event listerns
+                // http://vimeo.com/api/docs/player-js#events
+                Froogaloop(playerID).addEvent('play', play(playerID));
+                Froogaloop(playerID).addEvent('seek', seek);
+                
+                // Fire an API method
+                // http://vimeo.com/api/docs/player-js#reference
+                Froogaloop(playerID).api('play');
+            }
+            function play(playerID){
+                alert(playerID + " is playing!!!");
+            }
+            function seek() {
+                alert('Seeking');
+            }     
+                 
 		};
 			
 			

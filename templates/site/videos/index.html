@@ -4,7 +4,7 @@
 
 <div id="mainVideo">
 	{% block detail %}
-	<iframe id="vimeoFrame" src="http://player.vimeo.com/video/40455594?title=0&amp;byline=0&amp;portrait=0" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>		
+	<iframe id="vimeoFrame" src="http://player.vimeo.com/video/40455594?title=0&amp;byline=0&amp;portrait=0&amp;api=1" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>		
 	{% endblock %}	
 </div>
 
@@ -12,7 +12,7 @@
 <div id="allVideos">
 {% for video in video_list %}
 	<a class="video" href="/videos/{{ video.id }}/" id="video_{{ video.id }}">
-		<img src="{{ video.thumbnail_url }}" title="" />
+		<img src="{{ MEDIA_URL }}/{{ video.thumbnail }}" title="" />
 	</a>
 {% endfor %}
 </div>
