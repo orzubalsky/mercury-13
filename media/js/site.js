@@ -24,33 +24,19 @@
 		this.vimeoControls = function() 
 		{		    
 		    var self = this;
-            lib.log('a');
 
-            //$f('iframe#vimeoFrame').addEvent('ready', ready);
-            
-            // Enable the API on each Vimeo video
             $('iframe').each(function(){
-                
-                Froogaloop(this).addEvent('ready', ready);
-            });            
+                $f(this).addEvent('ready', ready);
+            }           
 
-            
-            function ready(playerID){
-                // Add event listerns
-                // http://vimeo.com/api/docs/player-js#events
-                Froogaloop(playerID).addEvent('play', play(playerID));
-                Froogaloop(playerID).addEvent('seek', seek);
-                
-                // Fire an API method
-                // http://vimeo.com/api/docs/player-js#reference
-                Froogaloop(playerID).api('play');
+            function ready(player_id){
+                $f(player_id).addEvent('play', play);
+                $f(player_id).api('play');
+                alert("Ready!!!");
             }
-            function play(playerID){
-                alert(playerID + " is playing!!!");
-            }
-            function seek() {
-                alert('Seeking');
-            }     
+            function play(){
+                alert("Playing!!!");
+            }   
                  
 		};
 			
