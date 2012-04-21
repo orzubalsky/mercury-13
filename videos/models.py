@@ -71,7 +71,6 @@ class Video(Base):
           
     page            = ForeignKey(Page)
     vimeo_status    = SmallIntegerField(max_length=1, choices=VIMEO_STATUS_CHOICES, default=3) 
-    thumbnail_url   = CharField(max_length=255, blank=True, null=True)
     thumbnail       = ImageField("Thumbnail",upload_to=image_filename, blank=True, null=True)    
     code            = CharField(max_length=255, verbose_name="Vimeo ID")    
     author          = CharField(max_length=255)
@@ -79,11 +78,11 @@ class Video(Base):
     def save(self, *args, **kwargs):
         response = urllib2.urlopen('http://vimeo.com/api/v2/video/%s.json' % (self.code))        
         data = json.loads(response.read(), encoding='utf-8')
-        self.thumbnail_url =  data[0][u'thumbnail_small']
+        thumbnail_url =  data[0][u'thumbnail_small']
 
         filePath = 'uploads/page_%i/thumbnail_%i.jpg' % (self.page.number, self.id)
         downloaded_image = file(settings.MEDIA_ROOT + filePath, "wb")
-        image_on_web = urllib.urlopen(self.thumbnail_url)
+        image_on_web = urllib.urlopen(thumbnail_url)
         while True:
             buf = image_on_web.read(65536)
             if len(buf) == 0:
