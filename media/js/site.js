@@ -6,7 +6,7 @@
 
 ;(function($){
 	var site = window.site = new function() 
-	{
+	{	    
 	    /*
 	     *  These functions are called when the document loads
 	     */
@@ -17,36 +17,49 @@
             this.pageSelection();		    
 		};	
 			
-		/*
-		 *  Wait for the vimeo player ready event and bind events
-		 */	
-		this.initVimeo = function() 
-		{		    
-		    var self = this;
+        this.initVimeo = function()
+        {
+            var self = this;
             
-            // Listen for the ready event for any vimeo video players on the page
-            var vimeoPlayers = document.querySelectorAll('iframe'), player;
+            var f = $('iframe'),
+                url = f.attr('src').split('?')[0];
 
-            for (var i = 0, length = vimeoPlayers.length; i < length; i++) {
-                player = vimeoPlayers[i];
-                $f(player).addEvent('ready', self.vimeoReady);
-            } 
-		};
+            // postMessage
+            function post(action, value) {
+                var data = { method: action };
+
+                if (value) {
+                    data.value = value;
+                }
+
+                f[0].contentWindow.postMessage(JSON.stringify(data), url);
+            }
+
+            // display event
+            function onMessageReceived(e) {
+                var data = JSON.parse(e.data);
+
+                $('span').text(data.event);
+
+                // Add listeners here
+                if (data.event === 'ready') {
+                    post('addEventListener', 'play');
+                    post('addEventListener', 'pause');
+                    post('addEventListener', 'finish');
+                    post('play');
+                }
+                if (data.event == 'finish')
+                {
+                    alert('finished');                    
+                    self.loadVideo('/videos/1/');                    
+                }
+            }            
+    
+            if (window.addEventListener){
+                window.addEventListener('message', onMessageReceived, false);
+            }
+        };
 		
-		/*
-		 *  When the vimeo player is ready, start playing and bind finish event
-		 */		
-		this.vimeoReady = function(player_id) 
-		{
-		    var self = this;
-            $f(player_id).addEvent('finish', finish);                
-            $f(player_id).api('play');		
-            
-            function finish()
-            {
-                self.loadVideo('/video/1/');
-            }                
-		};
 
 		/*
 		 *  Clicking on a thumbnail displays the target video
@@ -71,6 +84,7 @@
 		    var container = $('#mainVideo');
  			lib.ajax(url, '', 'json', container, function(data) { 
  			    self.editIframeSrc(data[0].fields.code); 
+ 			    self.initVimeo();
  			});		    
 		}
 		
@@ -79,7 +93,7 @@
  		 */		
 		this.editIframeSrc = function(vimeoCode)
 		{
-		    var src     = 'http://player.vimeo.com/video/' + vimeoCode + '?api=1&amp;player_id=vimeoFrame';
+		    var src = 'http://player.vimeo.com/video/' + vimeoCode + '?api=1&amp;player_id=vimeoFrame';
             $('#vimeoFrame').attr('src', src);		    
 		}
 		 
