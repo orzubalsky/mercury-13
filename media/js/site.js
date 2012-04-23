@@ -50,8 +50,7 @@
                 }
                 if (data.event == 'finish')
                 {
-                    alert('finished');                    
-                    self.loadVideo('/videos/1/');                    
+                    self.loadVideo('/videos/4/');                    
                 }
             }            
     
