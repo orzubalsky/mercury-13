@@ -1,6 +1,6 @@
 from django.db.models import *
 import os,sys
-import urllib, urllib2, json
+import urllib, urllib2, json, random
 
 
 class Base(Model):
@@ -79,9 +79,12 @@ class Video(Base):
         response = urllib2.urlopen('http://vimeo.com/api/v2/video/%s.json' % (self.code))        
         data = json.loads(response.read(), encoding='utf-8')
         thumbnail_url =  data[0][u'thumbnail_small']
-
-        filePath = 'uploads/page_%i/thumbnail_%i.jpg' % (self.page.number, self.id)
-        downloaded_image = file(settings.MEDIA_ROOT + filePath, "wb")
+        
+        dirname = settings.MEDIA_ROOT + '/uploads/page_%i/' % (self.page.number)
+        if not os.path.exists(dirname):
+            os.mkdir(os.path.join(settings.MEDIA_ROOT, dirname))
+        filePath = 'thumbnail_%i.jpg' % (random.randint(0,999))
+        downloaded_image = file(dirname + filePath, "wb")
         image_on_web = urllib.urlopen(thumbnail_url)
         while True:
             buf = image_on_web.read(65536)
@@ -91,7 +94,7 @@ class Video(Base):
         downloaded_image.close()
         image_on_web.close()
         
-        self.thumbnail = filePath
+        self.thumbnail = 'uploads/page_%i/' % (self.page.number) + filePath
         super(Video, self).save(*args, **kwargs)    
     
     def __unicode__ (self):
