@@ -23,11 +23,13 @@ body {
     height: 300px;
     width: 400px;
     background-color: #000;
-    margin: 6px;
 }
 
 #allVideos {
-   
+    bottom: 0;
+    height: 200px;
+    position: fixed;
+	background-color: #F4F6F7;    
 }
 
 #allVideos a {

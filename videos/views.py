@@ -10,7 +10,7 @@ from django.utils import simplejson as json
 
 
 def index(request):   
-    video = Video.objects.order_by('?')[0]    
+    video = Video.objects.filter(page__number=1).order_by('?')[0]    
     video_list = Video.objects.all().order_by('page')
     
     return render_to_response('videos/index.html', {'video_list': video_list, 'video': video}, context_instance=RequestContext(request))

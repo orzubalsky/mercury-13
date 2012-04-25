@@ -2,11 +2,13 @@
 
 {% block content %}
 
+{% if video %}
 <div id="mainVideo">
 	{% block detail %}
-	<iframe id="vimeoFrame" src="http://player.vimeo.com/video/40455594?api=1" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>		
+	<iframe id="vimeoFrame" src="http://player.vimeo.com/video/{{ video.code }}?api=1" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>		
 	{% endblock %}	
 </div>
+{% endif %}
 
 {% if video_list %}
 <div id="allVideos">

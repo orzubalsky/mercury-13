@@ -12,10 +12,29 @@
 	     */
 		this.init = function() 
 		{		    
+		    this.resizeVideoFrame();
 		    this.initVimeo();
             this.videoSelection();
             this.pageSelection();		    
 		};	
+		
+		this.resizeVideoFrame = function()
+		{
+		    var browserWidth    = $(window).width();
+		    var browserHeight   = $(window).height();
+		    var frameHeight = browserWidth * 3 / 4;
+		    
+		    // resize the video to fit the width of the browser
+            $('#vimeoFrame')
+            .attr('width', browserWidth)		    		    
+            .attr('height', frameHeight);
+		    
+            $('html, body').animate({scrollTop: browserHeight/2}, 300);
+		    
+		    // resize the container div to crop the height according to the browser height
+            // $('#mainVideo').css({'width':browserWidth+'px', 'height':browserHeight+'px'});		    		    
+		    
+		};
 			
         this.initVimeo = function()
         {
