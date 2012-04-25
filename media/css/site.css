@@ -20,14 +20,18 @@ body {
 }
 
 #mainVideo {
-    height: 300px;
-    width: 400px;
-    background-color: #000;
+    background-color: transparent;
+    position: relative;
+}
+#vimeoFrame, #controlLayer {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 #allVideos {
     bottom: 0;
-    height: 200px;
+    height: auto;
     position: fixed;
 	background-color: #F4F6F7;    
 }
@@ -36,12 +40,48 @@ body {
     background-color: blue;
     display: block;
     float: left;
-    margin: 6px;
+    margin: 0px;
+    height: 24px;
+    position: relative;
 }
 
 #allVideos a:hover {
    background-color: red; 
 }
+
+#allVideos a img.index {
+    height: 24px;
+}
+
+#allVideos a .rollover {
+    display: none;
+}
+
+#allVideos a:hover .rollover {
+    display: block;
+}
+
+.rollover {
+    bottom: 31px;
+    display: block;
+    padding: 12px 6px;
+    position: absolute;
+    background-color: #fff;   
+    text-align: center;
+    color: white; 
+}
+
+.rollover img {
+    
+}
+
+.rollover .info {
+    left: 9px;
+    position: absolute;
+    top: 30px;    
+}
+
+
 /*------------END POSITIONING------------*/
 
 

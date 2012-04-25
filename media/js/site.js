@@ -7,38 +7,53 @@
 ;(function($){
 	var site = window.site = new function() 
 	{	    
+	    this.playing = false;
+	    this.indexHeight = 0;
+	    
 	    /*
 	     *  These functions are called when the document loads
 	     */
 		this.init = function() 
-		{		    
-		    this.resizeVideoFrame();
+		{		
+		    this.getIndexHeight();    
 		    this.initVimeo();
             this.videoSelection();
             this.pageSelection();		    
 		};	
 		
+		this.getIndexHeight = function()
+		{
+		    var self = this;
+		    self.indexHeight = $('#allVideos').height();
+		};
+		
 		this.resizeVideoFrame = function()
 		{
+		    var self = this;
+		    
 		    var browserWidth    = $(window).width();
 		    var browserHeight   = $(window).height();
 		    var frameHeight = browserWidth * 3 / 4;
+		    var scrollOffset = (frameHeight - browserHeight) / 2;
 		    
 		    // resize the video to fit the width of the browser
             $('#vimeoFrame')
             .attr('width', browserWidth)		    		    
             .attr('height', frameHeight);
 		    
-            $('html, body').animate({scrollTop: browserHeight/2}, 300);
+            $('#controlLayer').css({'width':browserWidth+'px', 'height':frameHeight+'px'});		    		    
 		    
-		    // resize the container div to crop the height according to the browser height
-            // $('#mainVideo').css({'width':browserWidth+'px', 'height':browserHeight+'px'});		    		    
+		    $('#mainVideo').css({'height':(frameHeight + self.indexHeight - 8) + 'px'});
 		    
+            $('html, body').animate({scrollTop: scrollOffset}, 0);  
 		};
 			
         this.initVimeo = function()
         {
             var self = this;
+
+            $('#vimeoFrame').css({opacity:0});
+		    self.resizeVideoFrame();
             
             var f = $('iframe'),
                 url = f.attr('src').split('?')[0];
@@ -58,24 +73,37 @@
             function onMessageReceived(e) {
                 var data = JSON.parse(e.data);
 
-                $('span').text(data.event);
-
                 // Add listeners here
                 if (data.event === 'ready') {
                     post('addEventListener', 'play');
                     post('addEventListener', 'pause');
                     post('addEventListener', 'finish');
                     post('play');
+                    self.playing = true;
                 }
                 if (data.event == 'finish')
                 {
                     self.loadVideo('/videos/4/');                    
                 }
-            }            
+            }
     
             if (window.addEventListener){
                 window.addEventListener('message', onMessageReceived, false);
             }
+            
+            $('#controlLayer').live('click', function(e) 
+            {
+                if (self.playing == true) {
+                    post('pause');
+                    self.playing = false;
+                } else {
+                    post('play');
+                    self.playing = true;                    
+                }
+            });
+            
+            $('#vimeoFrame').css({opacity:1});
+            
         };
 		
 

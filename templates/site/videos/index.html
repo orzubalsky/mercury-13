@@ -6,7 +6,8 @@
 <div id="mainVideo">
 	{% block detail %}
 	<iframe id="vimeoFrame" src="http://player.vimeo.com/video/{{ video.code }}?api=1" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>		
-	{% endblock %}	
+	{% endblock %}
+	<div id="controlLayer">&nbsp;</div>
 </div>
 {% endif %}
 
@@ -14,7 +15,16 @@
 <div id="allVideos">
 {% for video in video_list %}
 	<a class="video" href="/videos/{{ video.id }}/" id="video_{{ video.id }}">
-		<img src="{{ MEDIA_URL }}/{{ video.thumbnail }}" title="" />
+		<img class="index" src="{{ MEDIA_URL }}{{ video.thumbnail }}" title="" />
+		<div class="rollover">
+			<img class="hover" src="{{ MEDIA_URL }}{{ video.thumbnail }}" title="" />
+			<div class="info">
+				<p>
+					PAGE {{ video.page.number }}<br />
+					{{ video.author }}
+				</p>				
+			</div>
+		</div>
 	</a>
 {% endfor %}
 </div>
