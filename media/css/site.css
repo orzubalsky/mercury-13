@@ -29,6 +29,36 @@ body {
     left: 0;
 }
 
+#videoHover {
+    background-color: white;
+    height: 10px;
+    left: 10px;
+    position: fixed;
+    top: 10px;
+    width: 10px;
+    opacity: 0.5;
+}
+
+#videoHover:hover {
+    opacity: 0.9;
+}
+
+#videoHover #videoInfo {
+    background-color: white;
+    bottom: 100px;
+    color: black;
+    padding: 6px;
+    position: fixed;
+}
+
+#videoHover:hover #videoInfo {
+    display: block;
+}
+
+strong {
+    font-weight: bold;
+}
+
 #allVideos {
     bottom: 0;
     height: auto;

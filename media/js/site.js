@@ -25,6 +25,7 @@
 		{
 		    var self = this;
 		    self.indexHeight = $('#allVideos').height();
+		    $('#videoInfo').css({'bottom':(self.indexHeight+14) + 'px'});
 		};
 		
 		this.resizeVideoFrame = function()
@@ -130,6 +131,7 @@
 		    var container = $('#mainVideo');
  			lib.ajax(url, '', 'json', container, function(data) { 
  			    self.editIframeSrc(data[0].fields.code); 
+ 			    $('#videoInfo p').html('<strong>PAGE ' + data[0].fields.page + '</strong>: ' + data[0].fields.author);
  			    self.initVimeo();
  			});		    
 		}
