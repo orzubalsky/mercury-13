@@ -7,8 +7,8 @@ html {
 
 body {
 	height: 100%;
-	color: #331970;
-	background-color: #F4F6F7;
+	color: #111;
+	background-color: #E8EAEA;
 }
 
 * html #container {
@@ -102,7 +102,7 @@ strong {
     bottom: 0;
     height: auto;
     position: fixed;
-	background-color: #F4F6F7;    
+	background-color: #000;    
 }
 
 #allVideos a {
@@ -171,10 +171,17 @@ strong {
 
 /*------------TYPE------------*/
 html,body,textarea,input {
-	font-family: "Droid Sans", Verdana, Arial, Helvetica, sans-serif;
+	font-family: "MariaRegular",Helvetica,Arial,sans-serif;
 	font-size: 8pt;
 	line-height: 1.7em;
-	letter-spacing: .02em;
+	letter-spacing: .04em;
+}
+
+@font-face {
+    font-family: "MariaRegular";
+    font-style: normal;
+    font-weight: normal;
+    src: url("http://x-cell.ch/fonts/maria-webfont.eot?#iefix") format("embedded-opentype"), url("http://x-cell.ch/fonts/maria-webfont.woff") format("woff"), url("http://x-cell.ch/fonts/maria-webfont.ttf") format("truetype"), url("http://x-cell.ch/fonts/maria-webfont.svg#MariaRegular") format("svg");
 }
 /*------------END TYPE------------*/
 
@@ -196,6 +203,86 @@ a:hover {
 
 
 /* This space left intentionally blank. */
+
+
+/*------------ADD VIDEOS------------*/
+
+#add {
+	width:860px;
+	margin:auto;
+	padding-top:40px;
+}
+#add h1 {
+	font-size:60px;
+	font-weight:normal;
+	line-height:72px;
+	letter-spacing:.08em;
+}
+#add h2 {
+	font-size:14px;
+	font-weight:normal;
+}
+#pdf {
+	width:425px;
+	height:530px;
+	background-color:#FFF;
+	margin:20px 0;
+}
+#download {
+	text-align:right;
+}
+#download select {
+	border:1px solid #CCC;
+	background-color:transparent;
+	padding:3px;
+	-moz-border-radius: 2px;
+	border-radius: 4px;
+	margin-left:10px;
+}
+#leftcolumn {
+	float:left;
+}
+#rightcolumn {
+	margin-top:40px;
+	float:right;
+}
+.center {
+	margin:auto;
+	display:block;
+	text-align:center;
+}	
+#upload {
+	margin:40px 30px;
+}
+#add input, #add textarea {
+	border:none;
+	background-color:#111;
+	color:white;
+	width:360px;
+	padding:10px;
+	margin:5px 0;
+	font-size:1.1em;
+	letter-spacing:.08em;
+	resize:none;
+}
+#add input#submit {
+	border:none;
+	background-color:transparent;
+	color:#111;
+	font-size:60px;
+	text-align:right;
+	padding-right:0;
+	margin-right:0;
+	position:relative;
+	display:block;
+	right:-28px;
+}
+#description {
+	clear:both;
+	padding:20px 0 40px;
+}
+/*------------END ADD VIDEOS------------*/
+
 
 
 /*------------OVERRIDE------------*/ 

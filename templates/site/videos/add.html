@@ -1,12 +1,31 @@
-<h1>ADD VIDEO TO PAGE {{ page.number }}</h1>
+{% extends request.is_ajax|yesno:"base_ajax.html,base.html" %}
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% block content %}
+<div id="add">
+	<div id="leftcolumn">
+		<h2 id="download">SELECT A PAGE <select><option value="{{ page.number }}">{{ page.number }}</option></select></h2>
+		<div id="pdf"></div>
+		<h2 id="download">DOWNLOAD FULL PDF</h2>
+	</div>
+	
+	<div id="rightcolumn">
+		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+		<img class="center" src="{{ MEDIA_URL }}uploads/images/upload.png" title="" />
+		<h1 class="center" id="upload">UPLOAD</h1>
+		<form action="/videos/add/" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<input type="hidden" class="hidden" name="page_id" value="{{ page.id }}">
+			<ul>
+				<li><input id="filename" type="text" maxlength="255" name="filename" value="Find the file"></li>
+				<li><input id="id_author" type="text" maxlength="255" name="id_author" value="Name"></li>
+				<li><textarea id="message" type="text" name="message">Message</textarea></li>
+			<!--	{{ form.as_ul }}-->
+				<li><input id="submit" type="submit" value="DONE"></li>
+			</ul>
+			
+		</form>
+	</div>
 
-<form action="/videos/add/" method="post" enctype="multipart/form-data">
-	{% csrf_token %}
-	<input type="hidden" class="hidden" name="page_id" value="{{ page.id }}">
-	<ul>
-		{{ form.as_ul }}
-	</ul>
-	<p><input type="submit" value="Submit"></p>
-</form>
+<div id="description">Between 1959 and 1962, twenty-five women were drafted into a privately funded program to gauge whether women can handle the biological demands of going into space. They were subjected to the same battery of physical and psychological tests as the men of Mercury 7 program. Thirteen of those women passed the test and are now often referred to as the Mercury 13. The program was halted prematurely by Lyndon Johnson and NASA. Two of those women, Jerrie Cobb and Janey Hart, called for a special subcommittee hearing before Congress to change the requirements for astronauts, which had effectively excluded women from qualifying as astronauts thus far. The video that we are creating is a way of bringing to life and making contemporary this institutionalized discrimination in a program that was so important in creating the US’s national image of progress, technology, and the future.</div>
+</div>
+{% endblock %}
