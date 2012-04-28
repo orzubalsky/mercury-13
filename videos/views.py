@@ -27,7 +27,8 @@ def detail(request, video_id):
     
     
 def add(request):
-    page = Page.objects.order_by('?')[0]    
+    page = Page.objects.order_by('?')[0]
+    pages = Page.objects.all
     
     if request.method == 'POST':
         form = VideoForm(request.POST, request.FILES)
@@ -39,5 +40,5 @@ def add(request):
     else :
         form = VideoForm()
     
-    return render_to_response('videos/add.html', {'page': page, 'form': form}, context_instance=RequestContext(request))
+    return render_to_response('videos/add.html', {'pages': pages, 'form': form}, context_instance=RequestContext(request))
     

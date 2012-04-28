@@ -66,14 +66,17 @@ class Video(Base):
         (3, 'Ready')
     )
   
-    def image_filename (self, filename):
+    def filename (self, filename):
         return 'uploads/page_%i/%s' % (page.number, filename)
           
     page            = ForeignKey(Page)
-    vimeo_status    = SmallIntegerField(max_length=1, choices=VIMEO_STATUS_CHOICES, default=3) 
-    thumbnail       = ImageField("Thumbnail",upload_to=image_filename, blank=True, null=True)    
-    code            = CharField(max_length=255, verbose_name="Vimeo ID")    
-    author          = CharField(max_length=255)
+    vimeo_status    = SmallIntegerField(max_length=1, choices=VIMEO_STATUS_CHOICES, default=3)
+    thumbnail       = ImageField("Thumbnail",upload_to=filename, blank=True, null=True)   
+    code            = CharField(max_length=255, verbose_name="Vimeo ID")
+    author          = CharField(max_length=255, verbose_name="Name")
+    message         = TextField(null=True)
+    filename        = FileField(null=True, blank=True, upload_to=filename, verbose_name="Find the file")    
+    
     
     def save(self, *args, **kwargs):
         response = urllib2.urlopen('http://vimeo.com/api/v2/video/%s.json' % (self.code))        

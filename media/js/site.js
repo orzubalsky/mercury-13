@@ -18,8 +18,27 @@
 		    this.getIndexHeight();    
 		    this.initVimeo();
             this.videoSelection();
-            this.pageSelection();		    
+            this.pageSelection();	
+            // this.formLabels();	   
+            this.changePages(); 
 		};	
+		
+		
+		this.changePages = function()
+		{
+            $('#selectPage').change(function() 
+            {
+                var selectedSrc = $('option:selected', this).val();
+                $('#pdf img').attr('src', selectedSrc);
+            });		    
+		};
+		
+		
+		this.formLabels = function()
+	    {
+            $('label').jLabel({ speed : 20, opacity : 0.1 });
+	    };
+	    
 		
 		this.getIndexHeight = function()
 		{
@@ -53,58 +72,63 @@
         {
             var self = this;
 
-            $('#vimeoFrame').css({opacity:0});
-		    self.resizeVideoFrame();
-            
-            var f = $('iframe'),
-                url = f.attr('src').split('?')[0];
-
-            // postMessage
-            function post(action, value) {
-                var data = { method: action };
-
-                if (value) {
-                    data.value = value;
-                }
-
-                f[0].contentWindow.postMessage(JSON.stringify(data), url);
-            }
-
-            // display event
-            function onMessageReceived(e) {
-                var data = JSON.parse(e.data);
-
-                // Add listeners here
-                if (data.event === 'ready') {
-                    post('addEventListener', 'play');
-                    post('addEventListener', 'pause');
-                    post('addEventListener', 'finish');
-                    post('play');
-                    self.playing = true;
-                }
-                if (data.event == 'finish')
-                {
-                    self.loadVideo('/videos/4/');                    
-                }
-            }
-    
-            if (window.addEventListener){
-                window.addEventListener('message', onMessageReceived, false);
-            }
-            
-            $('#controlLayer').live('click', function(e) 
+            if ($('#vimeoFrame').size() > 0)
             {
-                if (self.playing == true) {
-                    post('pause');
-                    self.playing = false;
-                } else {
-                    post('play');
-                    self.playing = true;                    
+                $('#vimeoFrame').css({opacity:0});
+    		    self.resizeVideoFrame();
+
+                var f = $('iframe'),
+                    url = f.attr('src').split('?')[0];
+
+                // postMessage
+                function post(action, value) 
+                {
+                    var data = { method: action };
+
+                    if (value) {
+                        data.value = value;
+                    }
+
+                    f[0].contentWindow.postMessage(JSON.stringify(data), url);
                 }
-            });
-            
-            $('#vimeoFrame').css({opacity:1});
-            
+
+                // display event
+                function onMessageReceived(e) 
+                {
+                    var data = JSON.parse(e.data);
+
+                    // Add listeners here
+                    if (data.event === 'ready') {
+                        post('addEventListener', 'play');
+                        post('addEventListener', 'pause');
+                        post('addEventListener', 'finish');
+                        post('play');
+                        self.playing = true;
+                    }
+                    if (data.event == 'finish')
+                    {
+                        self.loadVideo('/videos/4/');                    
+                    }
+                }
+
+                if (window.addEventListener)
+                {
+                    window.addEventListener('message', onMessageReceived, false);
+                }
+
+                $('#controlLayer').live('click', function(e) 
+                {
+                    if (self.playing == true) {
+                        post('pause');
+                        self.playing = false;
+                    } else {
+                        post('play');
+                        self.playing = true;                    
+                    }
+                });
+
+                $('#vimeoFrame').css({opacity:1});
+            }
         };
 		
 
