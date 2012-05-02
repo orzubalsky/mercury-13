@@ -8,23 +8,23 @@
 	<iframe id="vimeoFrame" src="http://player.vimeo.com/video/{{ video.code }}?api=1" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>		
 	{% endblock %}
 	<div id="controlLayer">&nbsp;</div>
-	<a id="videoHover" href="/videos/add/">
+	<div id="videoHover">
 		<h1>
-			DO YOU CONSIDER <br />YOURSELF A CANDIDATE <br />FOR SPACE TRAVEL? <span id="goToUpload">yes</span>			
+			DO YOU CONSIDER <br />YOURSELF A CANDIDATE <br />FOR SPACE TRAVEL? <!--<span id="goToUpload">yes</span>-->
 		</h1>
 		<div id="videoInfo">
 			<p>
 				<strong>PAGE {{ video.page.number }}</strong>: {{ video.author }}
 			</p>			
 		</div>
-	</a>
+	</div>
 </div>
 {% endif %}
 
 {% if video_list %}
 <div id="allVideos">
 {% for video in video_list %}
-	<a class="video" href="/videos/{{ video.id }}/" id="video_{{ video.id }}">
+	<a class="video" href="/{{ video.id }}/" id="video_{{ video.id }}">
 		<img class="index" src="{{ MEDIA_URL }}{{ video.thumbnail }}" title="" />
 		<div class="rollover">
 			<img class="hover" src="{{ MEDIA_URL }}{{ video.thumbnail }}" title="" />
