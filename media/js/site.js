@@ -7,6 +7,7 @@
 ;(function($){
 	var site = window.site = new function() 
 	{	    
+	    this.videoId = 3;
 	    this.playing = false;
 	    this.indexHeight = 0;
 	    
@@ -107,7 +108,8 @@
                     }
                     if (data.event == 'finish')
                     {
-                        self.loadVideo('/videos/4/');                    
+                        var videoId = self.nextVideoId();
+                        self.loadVideo('/' + videoId + '/');                    
                     }
                 }
 
@@ -129,6 +131,17 @@
 
                 $('#vimeoFrame').css({opacity:1});
             }
+        };
+        
+        
+        this.nextVideoId = function()
+        {
+            var self = this;
+            
+ 			lib.ajax('/next/' + self.videoId, '', 'json', '', function(data) {
+ 			    self.videoId = data[0].fields.id;
+ 			    return self.videoId;
+ 			});            
         };
 		
 
