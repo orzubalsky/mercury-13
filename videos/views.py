@@ -26,6 +26,17 @@ def detail(request, video_id):
     return render_to_response('videos/detail.html', {'video': video})
     
     
+def next(request, video_id):
+    if request.method == "POST":
+        current_video = get_object_or_404(Video, pk=video_id)
+        if current_video.page == 86:
+            next_page = 1
+        else:
+            next_page = current_video.page + 1;
+        data = serializers.serialize('json', Video.objects.filter(page=next_page).order_by('?')[0])
+        return HttpResponse(data, mimetype='application/json')
+
+    
 def add(request):
     page = Page.objects.order_by('?')[0]
     pages = Page.objects.all
