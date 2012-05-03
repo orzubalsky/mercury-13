@@ -29,10 +29,12 @@ def detail(request, video_id):
 def next(request, video_id):
     if request.method == "POST":
         current_video = get_object_or_404(Video, pk=video_id)
-        if current_video.page == 86:
+        print(current_video)
+        if current_video.page.number == 86:
             next_page = 1
         else:
-            next_page = current_video.page + 1;
+            next_page = current_video.page.number + 1;
+        print(next_page)
         data = serializers.serialize('json', Video.objects.filter(page=next_page).order_by('?')[0])
         return HttpResponse(data, mimetype='application/json')
 

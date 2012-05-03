@@ -120,6 +120,9 @@
 
                 $('#controlLayer').live('click', function(e) 
                 {
+                    var videoId = self.nextVideoId();
+                    self.loadVideo('/' + videoId + '/');                    
+                    /*
                     if (self.playing == true) {
                         post('pause');
                         self.playing = false;
@@ -127,6 +130,7 @@
                         post('play');
                         self.playing = true;                    
                     }
+                    */
                 });
 
                 $('#vimeoFrame').css({opacity:1});
@@ -138,7 +142,7 @@
         {
             var self = this;
             
- 			lib.ajax('/next/' + self.videoId, '', 'json', '', function(data) {
+ 			lib.ajax('/' + self.videoId + '/next/', '', 'json', '', function(data) {
  			    self.videoId = data[0].fields.id;
  			    return self.videoId;
  			});            
