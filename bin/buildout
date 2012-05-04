@@ -1,0 +1,13 @@
+#!/home/theyoungest_django/env/bin/python
+
+import sys
+sys.path[0:0] = [
+    '/home/theyoungest_django/nasa.lu/eggs/setuptools-0.6c12dev_r88846-py2.5.egg',
+    '/home/theyoungest_django/nasa.lu/eggs/zc.buildout-1.5.2-py2.5.egg',
+    ]
+
+
+import zc.buildout.buildout
+
+if __name__ == '__main__':
+    zc.buildout.buildout.main()
