@@ -67,7 +67,7 @@
 		this.ajax = function(url, data, dataType, container, successCallback) 
 		{
 			var self = this;
-			
+	
 			// $('#slothLoader').appendTo(container).show();
 			
 			$.ajax({

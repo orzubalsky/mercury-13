@@ -127,7 +127,7 @@
         {
             var self = this;
             
- 			lib.ajax('/' + self.videoId + '/next/', '', 'json', '', function(data) {
+ 			lib.ajax('/' + self.videoId + '/next/', '{ csrfmiddlewaretoken: "{{ csrf_token }}"}', 'json', '', function(data) {
  			    self.videoId = data[0].pk;
                 self.loadVideo('/' + self.videoId + '/');                    
  			});            
@@ -155,7 +155,7 @@
 		{            
 		    var self = this;
 		    var container = $('#mainVideo');
- 			lib.ajax(url, '', 'json', container, function(data) { 
+ 			lib.ajax(url, '{ csrfmiddlewaretoken: "{{ csrf_token }}"}', 'json', container, function(data) { 
  			    self.editIframeSrc(data[0].fields.code); 
  			    $('#videoInfo p').html('<strong>PAGE ' + data[0].fields.page + '</strong>: ' + data[0].fields.author);
  			    self.initVimeo();
@@ -186,7 +186,7 @@
 
       			lib.ajax(
       			    $(this).attr('href'), 
-      			    '', 
+      			    '{ csrfmiddlewaretoken: "{{ csrf_token }}"}', 
       			    'html', 
       			    container, 
       			    function(data) { $(container).empty().html(data); }

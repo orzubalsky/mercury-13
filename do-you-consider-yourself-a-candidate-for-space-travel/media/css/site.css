@@ -227,28 +227,17 @@ a:hover {
 	height:530px;
 	background-color:#FFF;
 	margin:20px 0;
-	overflow: hidden;
 }
-#pdf img {
-    height: 108%;
-    margin-left: 24px;
-    position: relative;
-    top: 2px;    
-}
-.download {
+#download {
 	text-align:right;
 }
-.download select {
+#download select {
 	border:1px solid #CCC;
 	background-color:transparent;
 	padding:3px;
 	-moz-border-radius: 2px;
 	border-radius: 4px;
 	margin-left:10px;
-}
-.download a {
-    text-decoration: none;
-    color: #111;
 }
 #leftcolumn {
 	float:left;
@@ -297,4 +286,4 @@ a:hover {
 
 
 /*------------OVERRIDE------------*/ 
-/*------------END OVERRIDE------------*/ 
+/*------------END OVERRIDE------------*/
