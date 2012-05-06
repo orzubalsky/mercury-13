@@ -4,6 +4,8 @@
 
 {% if video %}
 <div id="mainVideo">
+	{% csrf_token %}
+	
 	{% block detail %}
 	<iframe id="vimeoFrame" src="http://player.vimeo.com/video/{{ video.code }}?api=1" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>		
 	{% endblock %}
