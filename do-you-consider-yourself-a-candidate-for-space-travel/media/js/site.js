@@ -10,12 +10,14 @@
 	    this.videoId = 3;
 	    this.playing = false;
 	    this.indexHeight = 0;
+	    this.csrvToken = '';
 	    
 	    /*
 	     *  These functions are called when the document loads
 	     */
 		this.init = function() 
 		{		
+		    this.storeCsrvToken();
 		    this.getIndexHeight();    
 		    this.initVimeo();
             this.videoSelection();
@@ -23,6 +25,12 @@
             // this.formLabels();	   
             this.changePages(); 
 		};	
+		
+		
+		this.storeCsrvToken = function() 
+		{
+            this.csrvToken = $('input[name="csrfmiddlewaretoken"]').val();
+		};
 		
 		
 		this.changePages = function()
@@ -137,7 +145,7 @@
         {
             var self = this;
             
- 			lib.ajax('/' + self.videoId + '/next/', '{ csrfmiddlewaretoken: "{{ csrf_token }}"}', 'json', '', function(data) {
+ 			lib.ajax('/' + self.videoId + '/next/', '{ csrfmiddlewaretoken:' + self.csrvToken + '}', 'json', '', function(data) {
  			    self.videoId = data[0].pk;
                 self.loadVideo('/' + self.videoId + '/');                    
  			});            
@@ -165,7 +173,7 @@
 		{            
 		    var self = this;
 		    var container = $('#mainVideo');
- 			lib.ajax(url, '{ csrfmiddlewaretoken: "{{ csrf_token }}"}', 'json', container, function(data) { 
+ 			lib.ajax(url, '{ csrfmiddlewaretoken:' + self.csrvToken + '}', 'json', container, function(data) { 
  			    self.editIframeSrc(data[0].fields.code); 
  			    $('#videoInfo p').html('<strong>PAGE ' + data[0].fields.page + '</strong>: ' + data[0].fields.author);
  			    self.initVimeo();
@@ -196,7 +204,7 @@
 
       			lib.ajax(
       			    $(this).attr('href'), 
-      			    '{ csrfmiddlewaretoken: "{{ csrf_token }}"}', 
+      			    '{ csrfmiddlewaretoken:' + self.csrvToken + '}', 
       			    'html', 
       			    container, 
       			    function(data) { $(container).empty().html(data); }
