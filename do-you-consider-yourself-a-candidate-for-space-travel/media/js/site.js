@@ -108,8 +108,7 @@
                     }
                     if (data.event == 'finish')
                     {
-                        var videoId = self.nextVideoId();
-                        self.loadVideo('/' + videoId + '/');                    
+                        self.nextVideoId();                   
                     }
                 }
 
@@ -118,20 +117,6 @@
                     window.addEventListener('message', onMessageReceived, false);
                 }
 
-                $('#controlLayer').live('click', function(e) 
-                {
-                    var videoId = self.nextVideoId();
-                    self.loadVideo('/' + videoId + '/');                    
-                    /*
-                    if (self.playing == true) {
-                        post('pause');
-                        self.playing = false;
-                    } else {
-                        post('play');
-                        self.playing = true;                    
-                    }
-                    */
-                });
 
                 $('#vimeoFrame').css({opacity:1});
             }
@@ -143,8 +128,8 @@
             var self = this;
             
  			lib.ajax('/' + self.videoId + '/next/', '', 'json', '', function(data) {
- 			    self.videoId = data[0].fields.id;
- 			    return self.videoId;
+ 			    self.videoId = data[0].pk;
+                self.loadVideo('/' + self.videoId + '/');                    
  			});            
         };
 		
