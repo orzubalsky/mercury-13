@@ -1,3 +1,0 @@
-zc.buildout
-zc.recipe.egg
-django

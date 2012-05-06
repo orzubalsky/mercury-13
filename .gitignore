@@ -3,5 +3,9 @@
 local_settings.py
 .DS_Store
 
-# ignore all user-uploaded files (but not the README placeholder files)
-datamining/media/uploads/
+# ignore buildout's workspace stuff:
+.installed.cfg
+bin/
+develop-eggs/
+eggs/
+parts/
