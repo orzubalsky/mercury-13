@@ -30,12 +30,12 @@ body {
 }
 
 #videoHover {
-    background-color: white;
-    height: 10px;
-    left: 10px;
+    background: url('../uploads/images/question.png') no-repeat;
+    height: 43px;
+    left: 2px;
     position: fixed;
-    top: 7px;
-    width: 7px;
+    top: 1px;
+    width: 25px;
     opacity: 0.8;
     color: white;
     font-size: 36pt;
@@ -53,18 +53,22 @@ body {
     line-height: 1.1;
     position: fixed;
     top: -6px;
-    opacity: 0.8;   
+    /*opacity: 0.8;   */
     display: none; 
+	font-family:"Century Gothic";
+	letter-spacing:.08em;
 }
 
 #videoHover span {
     background-color: white;
-    bottom: 18px;
+    /*bottom: 18px;*/
     color: black;
-    font-size: 30pt;
+    font-size: 60pt;
     padding: 0 14px 10px;
     position: relative;
-    display: none;     
+    display: none;  
+   	top:20px;
+	left:6px;
 }
 
 #videoHover span:hover {
@@ -87,7 +91,15 @@ body {
     padding: 6px;
     font-size: 10pt;    
     position: fixed;
-    display: none;
+    /*display: none;*/
+	margin-left: 6px;
+	/*font-family:"Century Gothic";*/
+}
+/* saf3+, chrome1+ argh! */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	#videoHover #videoInfo {
+		bottom: 100px;
+	}
 }
 
 #videoHover:hover #videoInfo {
@@ -131,13 +143,26 @@ strong {
 }
 
 .rollover {
-    bottom: 31px;
+    bottom: 30px;
     display: block;
-    padding: 12px 6px;
+    padding: 5px 5px 10px;
     position: absolute;
     background-color: #fff;   
     text-align: center;
     color: white; 
+	font-family:"Century Gothic";
+	letter-spacing:0em;
+	font-size:.8em;
+}
+
+.rollover .arrow {
+	background: url('../uploads/images/down_arrow.png') no-repeat;
+	width:20px;
+	height:20px;
+	position:absolute;
+	top:90px;
+	left:8px;
+	
 }
 
 .rollover img {
@@ -145,9 +170,10 @@ strong {
 }
 
 .rollover .info {
-    left: 9px;
+    left: 10px;
     position: absolute;
-    top: 30px;    
+    top: 65px;  
+	line-height:1em;
 }
 
 
@@ -171,7 +197,7 @@ strong {
 
 /*------------TYPE------------*/
 html,body,textarea,input {
-	font-family: "MariaRegular",Helvetica,Arial,sans-serif;
+	font-family:"MariaRegular",Helvetica,Arial,sans-serif;
 	font-size: 8pt;
 	line-height: 1.7em;
 	letter-spacing: .04em;
@@ -217,6 +243,7 @@ a:hover {
 	font-weight:normal;
 	line-height:72px;
 	letter-spacing:.08em;
+	font-family:"Century Gothic";
 }
 #add h2 {
 	font-size:14px;
@@ -264,6 +291,7 @@ a:hover {
 	font-size:1.1em;
 	letter-spacing:.08em;
 	resize:none;
+	font-family:"Century Gothic";
 }
 #add input#submit {
 	border:none;
