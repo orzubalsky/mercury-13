@@ -117,6 +117,16 @@
                     window.addEventListener('message', onMessageReceived, false);
                 }
 
+                $('#controlLayer').live('click', function(e) 
+                {
+                    if (self.playing == true) {
+                        post('pause');
+                        self.playing = false;
+                    } else {
+                        post('play');
+                        self.playing = true;                    
+                    }
+                });
 
                 $('#vimeoFrame').css({opacity:1});
             }
