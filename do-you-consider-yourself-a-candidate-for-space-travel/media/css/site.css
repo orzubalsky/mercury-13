@@ -91,7 +91,7 @@ body {
     padding: 6px;
     font-size: 10pt;    
     position: fixed;
-    /*display: none;*/
+    display: none;
 	margin-left: 6px;
 	/*font-family:"Century Gothic";*/
 }
