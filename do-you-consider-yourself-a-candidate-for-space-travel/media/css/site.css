@@ -30,7 +30,7 @@ body {
 }
 
 #videoHover {
-    background: url('../uploads/images/question.png') no-repeat;
+    background: url('../images/question.png') no-repeat;
     height: 43px;
     left: 2px;
     position: fixed;
@@ -156,7 +156,7 @@ strong {
 }
 
 .rollover .arrow {
-	background: url('../uploads/images/down_arrow.png') no-repeat;
+	background: url('../images/down_arrow.png') no-repeat;
 	width:20px;
 	height:20px;
 	position:absolute;
