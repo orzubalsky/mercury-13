@@ -10,4 +10,3 @@
 
 ### Running ###
 * $ ./bin/django runserver
-* 
