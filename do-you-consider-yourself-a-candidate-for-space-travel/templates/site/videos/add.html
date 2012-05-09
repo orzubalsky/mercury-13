@@ -1,5 +1,15 @@
 {% extends request.is_ajax|yesno:"base_ajax.html,base.html" %}
 
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/ajaxUpload.css" />
+{% endblock %}		
+
+
+{% block extra_js %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/ajaxUpload.js"></script>
+{% endblock %}	
+
+
 {% block content %}
 <div id="add">
 	<div id="leftcolumn">
@@ -18,16 +28,33 @@
 			<a href="{{ MEDIA_URL }}/qualifications_for_astronauts_hearing_1962.pdf" target="_blank">DOWNLOAD FULL PDF</a>
 		</h2>
 	</div>
-	
+
 	<div id="rightcolumn">
 		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 		<img class="center" src="{{ MEDIA_URL }}uploads/images/upload.png" title="" />
 		<h1 class="center" id="upload">UPLOAD</h1>
+		
+		
+		
 		<form action="/videos/add/" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
+			
+			<div id="upload">
+				<div id="arrowPlaceholder">&nbsp;</div> 
+				<div id="swf-upload">
+			       	<input type="button" id="button" />  
+				</div>	
+				<div class="progressBarContainer">
+					<div class="progressBar">
+						<div class="progress"></div>
+					</div>
+				</div>
+				<div id="uploadText">Choose File</div>		
+			</div>			
+			
 			<input type="hidden" class="hidden" name="page_id" value="{{ page.id }}">
 			<ul>
-				<li><input id="filename" type="text" maxlength="255" name="filename" value="Find the file"></li>
+				<li><input id="filename" type="hidden" name="filename" value="Find the file"></li>
 				<li><input id="id_author" type="text" maxlength="255" name="id_author" value="Name"></li>
 				<li><textarea id="message" type="text" name="message">Message</textarea></li>
 			<!--	{{ form.as_ul }}-->
