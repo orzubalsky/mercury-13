@@ -12,7 +12,9 @@
 	<script type="text/javascript" src="{{ MEDIA_URL }}js/site.js"></script>
 	{% block extra_js %}{% endblock %}	
 </head>
-
+<script type="text/javascript">
+	var baseUrl = '{{ MEDIA_URL }}../';
+</script>
 <body>
 	<div id="container">
 		<!--

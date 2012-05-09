@@ -1,8 +1,7 @@
 #ajaxUploadContainer {
-	width: 404px;
-	height: 206px;
+	width: 380px;
+	height: 156px;
 	padding: 0px;
-	border: 1px solid #643993;
 	margin-bottom: 10px;
 	position: relative;
 }
@@ -13,63 +12,59 @@
 }
 
 
-#ajaxUploadContainer #upload #swf-upload {
-    margin: 40px auto 5px;
-    width: 99px;
+#ajaxUploadContainer #swf-upload {
+	margin:auto;
+	display:block;
+	text-align:center;
 }
 
-#ajaxUploadContainer #upload #arrowPlaceholder {
+#ajaxUploadContainer #arrowPlaceholder {
 	display: none;
-    background: url("../images/upload_arrow.png") no-repeat scroll 0 0 white;
-    height: 99px;
+    background: url("../images/upload.png") no-repeat scroll 0 0 white;
+    height: 140px;
     left: 153px;
     position: absolute;
     top: 40px;
-    width: 99px;
+    width: 141px;
 }
 
-#ajaxUploadContainer #upload #arrowPlaceholder.progress {
-    background: url("../images/upload_arrow.png") no-repeat scroll 0 -199px white;
+#ajaxUploadContainer #arrowPlaceholder.progress {
+    background: url("../images/upload.png") no-repeat scroll 0 -199px white;
 }
 
-#ajaxUploadContainer #upload #arrowPlaceholder.complete {
-    background: url("../images/upload_arrow.png") no-repeat scroll 0 -298px #ffdd00;
+#ajaxUploadContainer #arrowPlaceholder.complete {
+    background: url("../images/upload.png") no-repeat scroll 0 -298px #ffdd00;
 }
 
-#ajaxUploadContainer #upload #uploadText {
-	text-align: center;
-	font-weight: bold;
-	text-transform: uppercase;
-	position: relative;
-	width: 404px;
+#ajaxUploadContainer #uploadText {
+
 }
-#ajaxUploadContainer #upload #uploadText.progress {
+#ajaxUploadContainer #uploadText.progress {
 	color:#9e86bb;
 }
-#ajaxUploadContainer #upload #uploadText.complete {
+#ajaxUploadContainer #uploadText.complete {
 	color:#a17851;
 }
 
 #ajaxUploadContainer .progressBarContainer {
-	display: none;
-	background-color: white;
-    border: 1px solid #331970;
+    background-color: #FFFFFF;
+    border: 1px solid #111111;
+    display: block;
     height: 18px;
-    left: 15px;
     padding: 1px;
     position: absolute;
-    top: 80px;
-    width: 370px;
+    top: 60px;
+    width: 376px;
 }
 
 #ajaxUploadContainer .progressBarContainer .progressBar {
     height: 100%;
     width: 100%;
-    background-color: #643993;	
+    background-color: #E8EAEA;	
 }
 
 #ajaxUploadContainer .progressBarContainer .progressBar .progress {
-    background-color: #331970;
+    background-color: #111;
     width: 40%;
     height: 100%;	
 }

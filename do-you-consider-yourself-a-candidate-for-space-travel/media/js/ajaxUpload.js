@@ -13,20 +13,20 @@
 			var self = this;
 			
 			$('#swf-upload').swfupload({
-				upload_url: "http://localhost:8888/ff/ajax/user/ajaxupload",
-		    	post_params : { 'SESSID' : self.getSessionId(), 'other':'1234'},  
+				upload_url: baseUrl + "ajaxupload",
+		    	post_params : { 'SESSID' : site.csrvToken, 'other':'1234'},  
 				file_post_name: 'file',
-				file_size_limit : "10MB",
-				file_types : "*.mp3",
+				file_size_limit : "100MB",
+				file_types : "*.*",
 				file_types_description : "files",
 				file_upload_limit : 1,
-				flash_url : baseUrl + "/js/swfupload/swfupload.swf",
-				button_image_url : baseUrl + '/js/swfupload/choose_arrow2.png',
-				button_width : 99,
-				button_height : 99,
+				flash_url : baseUrl + "media/js/lib/swfupload/swfupload.swf",
+				button_image_url : baseUrl + 'media/images/upload.png',
+				button_width : 141,
+				button_height : 140,
 				button_placeholder : $('#button')[0],
-				debug: false,
-				debug_enabled: false,
+				debug: true,
+				debug_enabled: true,
 	            use_query_string : true
 			})
 			.bind('fileQueued', function(event, file)
@@ -99,17 +99,6 @@
 			})
 			.bind('uploadError', function(event, message) {
 			});
-		},
-		this.getSessionId = function() {
-			var ca = document.cookie.split(';');
-			var sessid = '';
-			for(var i in ca){
-				var c = ca[i].split('=');
-				if(typeof(c[0]) != 'undefined' && c[0].indexOf('PHPSESSID') != -1) {
-					sessid = c[1];	
-				}
-			}
-			return sessid;
 		};		
 	};
 })(jQuery);

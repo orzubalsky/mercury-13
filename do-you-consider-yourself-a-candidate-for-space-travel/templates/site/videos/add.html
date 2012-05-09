@@ -6,6 +6,8 @@
 
 
 {% block extra_js %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/lib/swfupload/swfupload.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/lib/swfupload/jquery.swfupload.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}js/ajaxUpload.js"></script>
 {% endblock %}	
 
@@ -39,7 +41,7 @@
 		<form action="/videos/add/" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
 			
-			<div id="upload">
+			<div id="ajaxUploadContainer">
 				<div id="arrowPlaceholder">&nbsp;</div> 
 				<div id="swf-upload">
 			       	<input type="button" id="button" />  
