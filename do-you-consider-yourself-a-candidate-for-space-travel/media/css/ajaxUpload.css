@@ -1,6 +1,6 @@
 #ajaxUploadContainer {
 	width: 380px;
-	height: 156px;
+	height: 230px;
 	padding: 0px;
 	margin-bottom: 10px;
 	position: relative;
@@ -16,11 +16,16 @@
 	margin:auto;
 	display:block;
 	text-align:center;
+	background-color:transparent;
+}
+
+#ajaxUploadContainer #SWFUpload_0 {
+	background-color:transparent;
 }
 
 #ajaxUploadContainer #arrowPlaceholder {
 	display: none;
-    background: url("../images/upload.png") no-repeat scroll 0 0 white;
+    background: url("../images/upload.png") no-repeat scroll 0 0 transparent;
     height: 140px;
     left: 153px;
     position: absolute;
@@ -29,15 +34,15 @@
 }
 
 #ajaxUploadContainer #arrowPlaceholder.progress {
-    background: url("../images/upload.png") no-repeat scroll 0 -199px white;
+    background: url("../images/upload.png") no-repeat scroll 0 -280px transparent;
 }
 
 #ajaxUploadContainer #arrowPlaceholder.complete {
-    background: url("../images/upload.png") no-repeat scroll 0 -298px #ffdd00;
+    background: url("../images/upload.png") no-repeat scroll 0 -420px transparent;
 }
 
-#ajaxUploadContainer #uploadText {
-
+#ajaxUploadContainer h1#uploadText {
+	font-size:38pt;
 }
 #ajaxUploadContainer #uploadText.progress {
 	color:#9e86bb;

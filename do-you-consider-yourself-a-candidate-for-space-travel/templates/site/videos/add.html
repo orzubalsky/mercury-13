@@ -33,8 +33,6 @@
 
 	<div id="rightcolumn">
 		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-		<img class="center" src="{{ MEDIA_URL }}uploads/images/upload.png" title="" />
-		<h1 class="center" id="upload">UPLOAD</h1>
 		
 		
 		
@@ -51,7 +49,7 @@
 						<div class="progress"></div>
 					</div>
 				</div>
-				<div id="uploadText">Choose File</div>		
+				<h1 class="center" id="uploadText">CHOOSE FILE</h1>	
 			</div>			
 			
 			<input type="hidden" class="hidden" name="page_id" value="{{ page.id }}">
@@ -60,7 +58,7 @@
 				<li><input id="id_author" type="text" maxlength="255" name="id_author" value="Name"></li>
 				<li><textarea id="message" type="text" name="message">Message</textarea></li>
 			<!--	{{ form.as_ul }}-->
-				<li><input id="submit" type="submit" value="DONE"></li>
+				<li><input id="submit" type="submit" value="UPLOAD"></li>
 			</ul>
 			
 		</form>

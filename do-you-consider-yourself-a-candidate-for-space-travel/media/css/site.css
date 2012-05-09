@@ -234,7 +234,7 @@ a:hover {
 /*------------ADD VIDEOS------------*/
 
 #add {
-	width:860px;
+	width:955px;
 	margin:auto;
 	padding-top:40px;
 }
@@ -250,21 +250,28 @@ a:hover {
 	font-weight:normal;
 }
 #pdf {
-	width:425px;
-	height:530px;
+	width:500px;
+	height:470px;
 	background-color:#FFF;
 	margin:20px 0;
+	overflow:hidden;
 }
-#download {
+.download {
 	text-align:right;
+	
 }
-#download select {
+.download select {
 	border:1px solid #CCC;
 	background-color:transparent;
 	padding:3px;
 	-moz-border-radius: 2px;
 	border-radius: 4px;
 	margin-left:10px;
+}
+.download a {
+	color:#111;
+	text-decoration:none;
+	float:right;
 }
 #leftcolumn {
 	float:left;
