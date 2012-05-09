@@ -1,0 +1,75 @@
+#ajaxUploadContainer {
+	width: 404px;
+	height: 206px;
+	padding: 0px;
+	border: 1px solid #643993;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+#ajaxUploadContainer.complete {
+	background-color: #ffdd00;
+	border: 1px solid #ffdd00;
+}
+
+
+#ajaxUploadContainer #upload #swf-upload {
+    margin: 40px auto 5px;
+    width: 99px;
+}
+
+#ajaxUploadContainer #upload #arrowPlaceholder {
+	display: none;
+    background: url("../images/upload_arrow.png") no-repeat scroll 0 0 white;
+    height: 99px;
+    left: 153px;
+    position: absolute;
+    top: 40px;
+    width: 99px;
+}
+
+#ajaxUploadContainer #upload #arrowPlaceholder.progress {
+    background: url("../images/upload_arrow.png") no-repeat scroll 0 -199px white;
+}
+
+#ajaxUploadContainer #upload #arrowPlaceholder.complete {
+    background: url("../images/upload_arrow.png") no-repeat scroll 0 -298px #ffdd00;
+}
+
+#ajaxUploadContainer #upload #uploadText {
+	text-align: center;
+	font-weight: bold;
+	text-transform: uppercase;
+	position: relative;
+	width: 404px;
+}
+#ajaxUploadContainer #upload #uploadText.progress {
+	color:#9e86bb;
+}
+#ajaxUploadContainer #upload #uploadText.complete {
+	color:#a17851;
+}
+
+#ajaxUploadContainer .progressBarContainer {
+	display: none;
+	background-color: white;
+    border: 1px solid #331970;
+    height: 18px;
+    left: 15px;
+    padding: 1px;
+    position: absolute;
+    top: 80px;
+    width: 370px;
+}
+
+#ajaxUploadContainer .progressBarContainer .progressBar {
+    height: 100%;
+    width: 100%;
+    background-color: #643993;	
+}
+
+#ajaxUploadContainer .progressBarContainer .progressBar .progress {
+    background-color: #331970;
+    width: 40%;
+    height: 100%;	
+}
