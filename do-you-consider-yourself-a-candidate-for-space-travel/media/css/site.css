@@ -234,8 +234,9 @@ a:hover {
 /*------------ADD VIDEOS------------*/
 
 #add {
-	width:955px;
-	margin:auto;
+	width: 80%;
+	min-width: 1024px;
+	margin: auto;
 	padding-top:40px;
 }
 #add h1 {
@@ -250,7 +251,7 @@ a:hover {
 	font-weight:normal;
 }
 #pdf {
-	width:500px;
+	width:100%; 
 	height:470px;
 	background-color:#FFF;
 	margin:20px 0;
@@ -275,7 +276,7 @@ a:hover {
 }
 #leftcolumn {
 	float:left;
-	width:500px; 
+	width:60%; 
 }
 #rightcolumn {
 	margin-top:50px;
