@@ -15,7 +15,10 @@
 {% block content %}
 <div id="add">
 	<div id="leftcolumn">
-		<h2 class="download">
+		<h2 class="download left">
+			<a href="http://www.nasa.lu"><span style="font-size:14pt">&#171;</span> RETURN TO VIDEOS</a>
+		<h2>
+		<h2 class="download right">
 			SELECT A PAGE 
 			<select id="selectPage">
 				{% for page in pages %}
@@ -26,7 +29,7 @@
 		<div id="pdf">
 			<img src="{{ MEDIA_URL }}/uploads/pages/01_1.jpg" alt="page 1" />
 		</div>
-		<h2 class="download">
+		<h2 class="download left">
 			<a href="{{ MEDIA_URL }}/qualifications_for_astronauts_hearing_1962.pdf" target="_blank">DOWNLOAD FULL PDF</a>
 		</h2>
 	</div>

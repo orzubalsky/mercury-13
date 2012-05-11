@@ -16,20 +16,16 @@
 	margin:auto;
 	display:block;
 	text-align:center;
-	background-color:transparent;
-}
-
-#ajaxUploadContainer #SWFUpload_0 {
-	background-color:transparent;
+	background-color: #E8EAEA;
 }
 
 #ajaxUploadContainer #arrowPlaceholder {
 	display: none;
     background: url("../images/upload.png") no-repeat scroll 0 0 transparent;
     height: 140px;
-    left: 153px;
+    left: 119px;
     position: absolute;
-    top: 40px;
+    top: 0px;
     width: 141px;
 }
 
@@ -45,10 +41,16 @@
 	font-size:38pt;
 }
 #ajaxUploadContainer #uploadText.progress {
-	color:#9e86bb;
+	color:#111;
+	font-size:12pt;
+	line-height:14pt;
+	margin-top:20px;
 }
 #ajaxUploadContainer #uploadText.complete {
-	color:#a17851;
+	color:#111;
+	font-size:12pt;
+	line-height:14pt;
+	margin-top:20px;
 }
 
 #ajaxUploadContainer .progressBarContainer {

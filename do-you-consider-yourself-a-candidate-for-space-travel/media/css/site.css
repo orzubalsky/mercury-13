@@ -254,11 +254,10 @@ a:hover {
 	height:470px;
 	background-color:#FFF;
 	margin:20px 0;
-	overflow:hidden;
+	overflow-y:scroll;
 }
 .download {
-	text-align:right;
-	
+	width:200px;
 }
 .download select {
 	border:1px solid #CCC;
@@ -267,17 +266,19 @@ a:hover {
 	-moz-border-radius: 2px;
 	border-radius: 4px;
 	margin-left:10px;
+	margin-bottom:20px;
 }
 .download a {
 	color:#111;
 	text-decoration:none;
-	float:right;
+	
 }
 #leftcolumn {
 	float:left;
+	width:500px; 
 }
 #rightcolumn {
-	margin-top:40px;
+	margin-top:50px;
 	float:right;
 }
 .center {
@@ -285,6 +286,14 @@ a:hover {
 	display:block;
 	text-align:center;
 }	
+.left {
+	float:left;
+	text-align:left;
+}
+.right {
+	float:right;
+	text-align:right;
+}
 #upload {
 	margin:40px 30px;
 }
@@ -315,6 +324,8 @@ a:hover {
 #description {
 	clear:both;
 	padding:20px 0 40px;
+	font-family: Helvetica, Arial, sans-serif;
+	letter-spacing:.1em;
 }
 /*------------END ADD VIDEOS------------*/
 
