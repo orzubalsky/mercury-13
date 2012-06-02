@@ -1,77 +1,90 @@
 #ajaxUploadContainer {
 	width: 380px;
-	height: 230px;
+	height: auto;
 	padding: 0px;
 	margin-bottom: 10px;
 	position: relative;
 }
-
-#ajaxUploadContainer.complete {
-	background-color: #ffdd00;
-	border: 1px solid #ffdd00;
+#ajaxUploadContainer.progress {
 }
-
-
-#ajaxUploadContainer #swf-upload {
+#ajaxUploadContainer.complete {
+}
+#ajaxUploadContainer #swf-upload .qq-upload-button {
 	margin:auto;
 	display:block;
 	text-align:center;
 	background-color: #E8EAEA;
-}
-
-#ajaxUploadContainer #arrowPlaceholder {
-	display: none;
     background: url("../images/upload.png") no-repeat scroll 0 0 transparent;
     height: 140px;
-    left: 119px;
-    position: absolute;
-    top: 0px;
-    width: 141px;
+    width: 141px;	
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    text-indent: -99999px;
 }
-
-#ajaxUploadContainer #arrowPlaceholder.progress {
-    background: url("../images/upload.png") no-repeat scroll 0 -280px transparent;
+#ajaxUploadContainer #swf-upload .qq-upload-button-hover {
+    background: url("../images/upload.png") no-repeat scroll 0 -140px transparent;
 }
-
-#ajaxUploadContainer #arrowPlaceholder.complete {
-    background: url("../images/upload.png") no-repeat scroll 0 -420px transparent;
+#ajaxUploadContainer #swf-upload .qq-upload-button-focus {
+    outline:none;
 }
-
 #ajaxUploadContainer h1#uploadText {
 	font-size:38pt;
-}
-#ajaxUploadContainer #uploadText.progress {
 	color:#111;
 	font-size:12pt;
 	line-height:14pt;
-	margin-top:20px;
+	margin-top:20px;	
 }
-#ajaxUploadContainer #uploadText.complete {
-	color:#111;
-	font-size:12pt;
-	line-height:14pt;
-	margin-top:20px;
+#ajaxUploadContainer.progress #uploadText {
+
+}
+#ajaxUploadContainer.complete #uploadText {
+
 }
 
 #ajaxUploadContainer .progressBarContainer {
     background-color: #FFFFFF;
     border: 1px solid #111111;
-    display: block;
+    display: none;
     height: 18px;
     padding: 1px;
     position: absolute;
     top: 60px;
     width: 376px;
 }
-
+#ajaxUploadContainer.progress .progressBarContainer {
+    display: block;
+}
+#ajaxUploadContainer.complete .progressBarContainer {
+    display: none;
+}
 #ajaxUploadContainer .progressBarContainer .progressBar {
     height: 100%;
     width: 100%;
     background-color: #E8EAEA;	
 }
-
 #ajaxUploadContainer .progressBarContainer .progressBar .progress {
     background-color: #111;
-    width: 40%;
+    width: 0%;
     height: 100%;	
+}
+#ajaxUploadContainer.complete .progressBarContainer .progressBar .progress {
+    background-color: #E8EAEA;
+}
+
+#ajaxUploadContainer .qq-upload-list {
+    margin:15px 35px; padding:0; list-style:none;
+}
+
+#ajaxUploadContainer .qq-upload-file,
+#ajaxUploadContainer .qq-upload-size,
+#ajaxUploadContainer .qq-upload-cancel {
+    display: none;
+}
+
+#ajaxUploadContainer .qq-upload-spinner {
+    position: absolute;
+    left: 48%;
+    top: 45%;
+    z-index: 100;    
 }

@@ -3,11 +3,36 @@
 		this.swfu;
 		this.init = function() {
 			this.debug();
-			this.ajaxUpload();
+			this.fileUpload();
 		},
 		this.debug = function() {
 			//
 		},
+		this.fileUpload = function()
+		{
+           var uploader = new qq.FileUploader({
+               action: "{% url my_ajax_upload %}",
+               element: $('#file-uploader')[0],
+               multiple: true,
+               onComplete: function(id, fileName, responseJSON) {
+                   if(responseJSON.success) {
+                       alert("success!");
+                   } else {
+                       alert("upload failed!");
+                   }
+               },
+               onAllComplete: function(uploads) {
+                   // uploads is an array of maps
+                   // the maps look like this: {file: FileObject, response: JSONServerResponse}
+                   alert("All complete!");
+               },
+               params: {
+                   'csrf_token': site.csrvToken,
+                   'csrf_name': 'csrfmiddlewaretoken',
+                   'csrf_xname': 'X-CSRFToken',
+               },
+           });
+		};		
 		this.ajaxUpload = function() 
 		{
 			var self = this;

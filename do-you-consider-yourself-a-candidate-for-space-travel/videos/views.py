@@ -7,6 +7,8 @@ from django.forms.formsets import formset_factory
 from videos.models import *
 from django.core import serializers
 from django.utils import simplejson as json
+from ajaxuploader.views import AjaxFileUploader
+from django.middleware.csrf import get_token
 
 
 def index(request):   
@@ -39,18 +41,25 @@ def next(request, video_id):
 
     
 def add(request):
-    page = Page.objects.order_by('?')[0]
-    pages = Page.objects.all
+    pages = Page.objects.all().order_by('number')
     
     if request.method == 'POST':
-        form = VideoForm(request.POST, request.FILES)
+        form = VideoForm(request.POST)
+        page = Page.objects.get(number=request.POST['page_number'])
+        filename = request.POST['filename']
+        
         if form.is_valid():
             validForm = form.save(commit=False)
-            validForm.page_id = page.id;
-            validForm.save()   
-            return HttpResponseRedirect('/videos/')                   
+            validForm.save_upload(page, filename)   
+            return HttpResponseRedirect('/')                   
     else :
         form = VideoForm()
     
     return render_to_response('videos/add.html', {'pages': pages, 'form': form}, context_instance=RequestContext(request))
     
+
+def start(request):
+    csrf_token = get_token(request)
+    return render_to_response('import.html', {'csrf_token': csrf_token}, context_instance = RequestContext(request))
+
+import_uploader = AjaxFileUploader()

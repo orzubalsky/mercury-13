@@ -77,7 +77,6 @@ class Video(Base):
     code            = CharField(max_length=255, verbose_name="Vimeo ID")
     author          = CharField(max_length=255, verbose_name="Name")
     message         = TextField(null=True)
-    filename        = FileField(null=True, blank=True, upload_to=filename, verbose_name="Find the file")    
     
     
     def save(self, *args, **kwargs):
@@ -100,7 +99,13 @@ class Video(Base):
         image_on_web.close()
         
         self.thumbnail = 'uploads/page_%i/' % (self.page.number) + filePath
-        super(Video, self).save(*args, **kwargs)    
+        super(Video, self).save(*args, **kwargs)   
+        
+    def save_upload(self, page, filename,  *args, **kwargs):
+        self.page = page
+        self.code = filename
+        self.status = 0
+        super(Video, self).save(*args, **kwargs)         
     
     def __unicode__ (self):
         return "page %i by %s" % (self.page.number, self.author)    

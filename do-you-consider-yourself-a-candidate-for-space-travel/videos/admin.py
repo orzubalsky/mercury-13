@@ -7,7 +7,7 @@ class VideosInline(admin.TabularInline):
     fields = ['page', 'code', 'author']
 
 class VideoAdmin(admin.ModelAdmin):
-    fields = ['status', 'page', 'code', 'author']
+    fields = ['status', 'page', 'code', 'author', 'message']
 
 class PageAdmin(admin.ModelAdmin):
     inlines = [VideosInline]

@@ -24,6 +24,7 @@
             this.pageSelection();	
             // this.formLabels();	   
             this.changePages(); 
+            this.formValues();
 		};	
 		
 		
@@ -33,13 +34,61 @@
 		};
 		
 		
+		this.formValues = function() 
+		{
+        	// the input box element
+			var inputbox = $('#id_author');
+
+			// the input box's default value 
+			var defaultValue = $(inputbox).val();
+
+			$(inputbox).live('focus', function() {
+				$(this).val('');
+			})
+			.live('blur', function() {
+				if ($(this).val().length < 1) {
+					$(inputbox).val(defaultValue);
+				}
+			});
+			
+        	// the input box element
+			var inputbox = $('#id_message');
+
+			// the input box's default value 
+			var defaultValue = $(inputbox).val();
+
+			$(inputbox).live('focus', function() {
+				$(this).val('');
+			})
+			.live('blur', function() {
+				if ($(this).val().length < 1) {
+					$(inputbox).val(defaultValue);
+				}
+			});			
+		};	
+		
+		
 		this.changePages = function()
 		{
+		    var self = this;
+		    
+		    var randomIndex = lib.random(84,0);
+		    var option = $('#selectPage option').eq(randomIndex);          
+            $('#selectPage option').eq(randomIndex).attr('selected', 'selected');
+            self.changePage(option);	    
+		    
             $('#selectPage').change(function() 
             {
-                var selectedSrc = $('option:selected', this).val();
-                $('#pdf img').attr('src', selectedSrc);
+    		    var option = $('option:selected', this);          
+                self.changePage(option);
             });		    
+		};
+		
+		
+		this.changePage = function(optionElement)
+		{
+            $('#pdf img').attr('src', $(optionElement).val());
+			$('#page_number').val($(optionElement).text());		    
 		};
 		
 		

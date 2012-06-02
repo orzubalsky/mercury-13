@@ -9,3 +9,6 @@ bin/
 develop-eggs/
 eggs/
 parts/
+
+# ignore static files (for now):
+do-you-consider-yourself-a-candidate-for-space-travel/static/

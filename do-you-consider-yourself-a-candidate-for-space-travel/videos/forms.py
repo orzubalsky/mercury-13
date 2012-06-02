@@ -5,4 +5,4 @@ from django.contrib.admin.widgets import AdminDateWidget
 class VideoForm (ModelForm):
     class Meta: 
         model = Video
-        fields = ['filename', 'author', 'message']
+        fields = ['author', 'message']

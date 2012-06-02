@@ -60,15 +60,15 @@ body {
 }
 
 #videoHover span {
+    font-size: 29pt;
+    line-height: 1.1;
     background-color: white;
-    /*bottom: 18px;*/
-    color: black;
-    font-size: 60pt;
-    padding: 0 14px 10px;
+    color:black;
+    padding: 0 11px 10px;
     position: relative;
-    display: none;  
-   	top:20px;
-	left:6px;
+    display: inline;
+    top: -17px;
+    left: 5px;
 }
 
 #videoHover span:hover {
@@ -257,6 +257,9 @@ a:hover {
 	margin:20px 0;
 	overflow-y:scroll;
 }
+#pdf img {
+    width: 100%;
+}
 .download {
 	width:200px;
 }
@@ -321,6 +324,7 @@ a:hover {
 	position:relative;
 	display:block;
 	right:-28px;
+	cursor: pointer;
 }
 #description {
 	clear:both;
