@@ -23,6 +23,16 @@ STAGE_NAME = 'DEV' # either PROD or DEV
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = 'http://127.0.0.1:8000/media/'
 
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/home/media/media.lawrence.com/static/"
+STATIC_ROOT = '/home/<username>/<domain>/public/'
+
+# URL prefix for static files.
+# Example: "http://media.lawrence.com/static/"
+STATIC_URL = 'http://<domain>/'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.',   # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
