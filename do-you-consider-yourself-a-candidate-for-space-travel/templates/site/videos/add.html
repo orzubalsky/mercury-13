@@ -81,12 +81,15 @@
 		</h2>
 	</div>
 
-	<div id="rightcolumn">
-		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-		
-		<form action="/add/" method="post" enctype="multipart/form-data" id="addVideo">
-			{% csrf_token %}			
-			{{ form.errors }}
+	<div id="rightcolumn">		
+		<form action="/add/" method="post" enctype="multipart/form-data" id="addVideo">{% csrf_token %}			
+			{% if form.errors %}
+			<ul>
+			{% for field in form %}
+				<li><strong>{{ field.errors }}</strong></li>
+			{% endfor %}				
+			</ul>
+			{% endif %}
 			<div id="ajaxUploadContainer">
 				<div id="swf-upload">
 			        <noscript>          
@@ -101,14 +104,22 @@
 				<h1 class="center" id="uploadText">CHOOSE FILE</h1>	
 			</div>			
 			
-			<input type="hidden" class="hidden" name="page_number" id="page_number" value="">
 			<ul>
-				<li><input id="id_filename" type="hidden" name="filename"></li>
-				<li><input id="id_author" type="text" maxlength="255" name="author" value="Name"></li>
-				<li><textarea id="id_message" type="text" name="message">Message</textarea></li>
-				<!-- {{ form.as_ul }} -->
+		 	{% for field in form %}
+				<li>{{ field }}</li>
+		    {% endfor %}
 				<li><input id="submit" type="submit" value="UPLOAD"></li>
 			</ul>
+
+			<!--
+				<input type="hidden" class="hidden" name="page_number" id="page_number" value="">
+			 
+				<ul>
+						<li><input id="id_filename" type="hidden" name="filename"></li>
+						<li><input id="id_author" type="text" maxlength="255" name="author" value="Name"></li>
+						<li><textarea id="id_message" type="text" name="message">Message</textarea></li>
+						<li><input id="submit" type="submit" value="UPLOAD"></li>
+					</ul> -->
 			
 		</form>
 	</div>
