@@ -313,6 +313,9 @@ a:hover {
 	resize:none;
 	font-family:"Century Gothic";
 }
+#add textarea {
+    height: 80px;
+}
 #add input#submit {
 	border:none;
 	background-color:transparent;
