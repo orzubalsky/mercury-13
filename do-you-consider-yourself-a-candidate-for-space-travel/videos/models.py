@@ -75,8 +75,8 @@ class Video(Base):
     vimeo_status    = SmallIntegerField(max_length=1, choices=VIMEO_STATUS_CHOICES, default=3)
     thumbnail       = ImageField("Thumbnail",upload_to=filename, blank=True, null=True)   
     code            = CharField(max_length=255, verbose_name="Vimeo ID")
-    author          = CharField(max_length=255, verbose_name="Name")
-    message         = TextField(null=True)
+    author          = CharField(max_length=255, verbose_name="Name", default="Name")
+    message         = TextField(null=True, default="Message")
     
     
     def save(self, *args, **kwargs):
