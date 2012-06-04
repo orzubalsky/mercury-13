@@ -45,12 +45,10 @@ def add(request):
     
     if request.method == 'POST':
         form = VideoForm(request.POST)
-        page = Page.objects.get(number=request.POST['page_number'])
-        filename = request.POST['filename']
         
         if form.is_valid():
             validForm = form.save(commit=False)
-            validForm.save_upload(page, filename)   
+            validForm.save_upload(form.cleaned_data.get('page_number'), form.cleaned_data.get('filename'))
             return HttpResponseRedirect('/')                   
     else :
         form = VideoForm()
