@@ -88,7 +88,7 @@
 		this.changePage = function(optionElement)
 		{
             $('#pdf img').attr('src', $(optionElement).val());
-			$('#page_number').val($(optionElement).text());		    
+			$('#id_page_number').val($(optionElement).text());		    
 		};
 		
 		
