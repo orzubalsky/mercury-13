@@ -19,3 +19,7 @@ doyouconsider/settings/development.py
 
 # ignore uploaded files
 doyouconsider/media/uploads
+
+# ignore cache files
+tmp
+doyouconsider/tmp/
