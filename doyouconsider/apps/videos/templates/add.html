@@ -1,0 +1,129 @@
+{% extends request.is_ajax|yesno:"base_ajax.html,base.html" %}
+
+{% block extra_css %}
+<link href="{{ STATIC_URL }}ajaxuploader/css/fileuploader.css" media="screen" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/ajaxUpload.css" />
+{% endblock %}		
+
+
+{% block extra_js %}
+<script src="{{ STATIC_URL }}ajaxuploader/js/fileuploader.js" ></script>
+<script>
+   $(function(){
+       var uploader = new qq.FileUploader( {
+			action: "{% url 'my-ajax-upload' %}",
+			element: $('#swf-upload')[0],
+			multiple: false,
+			allowedExtensions: ['mov', '3gp', 'avi', 'mkv', 'mp4', 'm4v'],
+			onProgress: function(id, fileName, loaded, total)
+			{
+				$('.qq-upload-file, .qq-upload-size, .qq-upload-cancel').hide();
+				var percentage=Math.round((loaded/total)*100);
+				$('#ajaxUploadContainer').addClass('progress');		
+				$('#uploadText').text(fileName);				
+				$('.progressBarContainer .progress').css({'width':percentage+'%'});		
+			},
+			onCancel: function(id, fileName)
+			{
+				$('.qq-upload-file, .qq-upload-size, .qq-upload-cancel').hide();
+				$('#ajaxUploadContainer').removeClass();
+			},
+			onComplete: function( id, fileName, responseJSON ) 
+			{             
+				if( responseJSON.success ) {
+					// alert( "success!" );
+			 	}
+             	else
+			 	{
+					alert( "upload failed!" );
+			 	}
+				$('.qq-upload-file, .qq-upload-size, .qq-upload-cancel').hide();	
+				$('#id_filename').val("uploads/" + fileName);
+           },
+           onAllComplete: function( uploads ) {
+             // uploads is an array of maps
+             // the maps look like this: { file: FileObject, response: JSONServerResponse }
+             $('#ajaxUploadContainer').removeClass().addClass('complete');
+           },
+           params: {
+             'csrf_token': '{{ csrf_token }}',
+             'csrf_name': 'csrfmiddlewaretoken',
+             'csrf_xname': 'X-CSRFToken',
+           },
+         }) ;
+   });
+</script>
+
+
+
+{% endblock %}	
+
+
+{% block content %}
+<div id="add">
+	<div id="leftcolumn">
+		<h2 class="download left">
+			<a href="/"><span style="font-size:14pt">&#171;</span> RETURN TO VIDEOS</a>
+		<h2>
+		<h2 class="download right">
+			SELECT A PAGE 
+			<select id="selectPage">
+				{% for page in pages %}
+				<option value="{{ STATIC_URL }}{{ page.filename }}">{{ page.number }}</option>
+				{% endfor %}
+			</select>
+		</h2>
+		<div id="pdf">
+			<img src="{{ STATIC_URL }}uploads/pages/01_1.jpg" alt="page 1" />
+		</div>
+		<h2 class="download left">
+			<a href="{{ STATIC_URL }}qualifications_for_astronauts_hearing_1962.pdf" target="_blank">DOWNLOAD FULL PDF</a>
+		</h2>
+	</div>
+
+	<div id="rightcolumn">		
+		<form action="/add/" method="post" enctype="multipart/form-data" id="addVideo">{% csrf_token %}			
+			{% if form.errors %}
+			<ul>
+			{% for field in form %}
+				<li><strong>{{ field.errors }}</strong></li>
+			{% endfor %}				
+			</ul>
+			{% endif %}
+			<div id="ajaxUploadContainer">
+				<div id="swf-upload">
+			        <noscript>          
+			            <p>Please enable JavaScript to use file uploader.</p>
+			        </noscript>
+				</div>	
+				<div class="progressBarContainer">
+					<div class="progressBar">
+						<div class="progress"></div>
+					</div>
+				</div>
+				<h1 class="center" id="uploadText">CHOOSE FILE</h1>	
+			</div>			
+			
+			<ul>
+		 	{% for field in form %}
+				<li>{{ field }}</li>
+		    {% endfor %}
+				<li><input id="submit" type="submit" value="UPLOAD"></li>
+			</ul>
+
+			<!--
+				<input type="hidden" class="hidden" name="page_number" id="page_number" value="">
+			 
+				<ul>
+						<li><input id="id_filename" type="hidden" name="filename"></li>
+						<li><input id="id_author" type="text" maxlength="255" name="author" value="Name"></li>
+						<li><textarea id="id_message" type="text" name="message">Message</textarea></li>
+						<li><input id="submit" type="submit" value="UPLOAD"></li>
+					</ul> -->
+			
+		</form>
+	</div>
+
+<div id="description">Between 1959 and 1962, twenty-five women were drafted into a privately funded program to gauge whether women can handle the biological demands of going into space. They were subjected to the same battery of physical and psychological tests as the men of Mercury 7 program. Thirteen of those women passed the test and are now often referred to as the Mercury 13. The program was halted prematurely by Lyndon Johnson and NASA. Two of those women, Jerrie Cobb and Janey Hart, called for a special subcommittee hearing before Congress to change the requirements for astronauts, which had effectively excluded women from qualifying as astronauts thus far. The video that we are creating is a way of bringing to life and making contemporary this institutionalized discrimination in a program that was so important in creating the US’s national image of progress, technology, and the future.</div>
+</div>
+{% endblock %}

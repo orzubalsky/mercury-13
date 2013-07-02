@@ -11,4 +11,11 @@ eggs/
 parts/
 
 # ignore static files (for now):
-do-you-consider-yourself-a-candidate-for-space-travel/static/
+doyouconsider/static/
+
+# ignore settings files:
+doyouconsider/settings/development.py
+!doyouconsider/settings/__init__.py
+
+# ignore uploaded files
+doyouconsider/media/uploads
